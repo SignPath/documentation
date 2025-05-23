@@ -1,3 +1,90 @@
+- date: '2025-05-08'
+  updates:
+    application:
+      version: 1.187.0
+      improvements:
+        - text: 'Certificate chains are now always embedded in Authenticode, ClickOnce, CMS and XML signatures. (Previously only chains from public CAs were embedeed.)'
+          issues: [SIGN-7625]
+        - text: 'Improved the user experience by removing unused Trusted Build System Link details.'
+          issues: [SIGN-7731]
+        - text: 'Email notifications for accepted invitations now state whether a SSO or personal user account was used.'
+          issues: [SIGN-7730]
+      bug_fixes:
+        - text: 'Changes of the _purpose_ property of certificates and signing policies are now included in the history view.'
+          issues: [SIGN-7171]
+        - text: 'Proper error messages are now displayed when invalid certificate files are uploaded.'
+          issues: [SIGN-7663]
+        - text: |
+            The following REST APIs now return the correct error codes when no artifact is available:
+              * `GET /SigningRequests/{signingRequestId}/UnsignedArtifact`
+              * `GET /SigningRequests/{signingRequestId}/SignedArtifact`
+    self_hosted_installations:
+      version:  1.187.0
+      improvements:
+        - text: 'All configuration settings of each container instance are now dumped into a file at startup for easier troubleshooting (except secrets).'
+          issues: [SIGN-7545]
+- date: '2025-04-29'
+  updates:
+    github_actions_action:
+      version: '1.2'
+      improvements:
+        - text: The `output-artifact-directory` path now also supports absolute paths. 
+          issues: [SIGN-7496]
+- date: '2025-04-22'
+  updates:
+    application:
+      version: 1.186.1
+      new_features:
+        - text: |
+            X.509 certificate chains:
+             * Certificates are now displayed with their full chain of issuers (root and intermediate certificates). This works automatically for certificate chains from public Certificate Authorities and if the chain was uploaded.
+             * The `GET /v1/{organizationId}/Certificates/{slug}` REST API contains a new `x509CertificateChain` property (contains the available full chain).
+          issues: [SIGN-1483]
+      improvements:
+        - text: |
+            PFX import now also supports uploading X.509 certificate chains.
+          issues: [SIGN-7626]
+        - text: |
+            REST API additions:
+             * New `POST /v1/{organizationId}/Projects/{projectSlug}/ArtifactConfigurations/{artifactConfigurationSlug}/EditXml` route.
+             * New `GET /v1/Meta/SystemInfo` route to retrieve the application version and UI base URL.
+          issues: [SIGN-7626, SIGN-6689]
+      bug_fixes:
+        - text: |
+            Fixed caching issue that prevented project configurators from editing recently created artifact configurations.
+          issues: [SIGN-7745]
+- date: '2025-04-14'
+  updates:
+    github_connector:
+      version: 1.3.2
+      bug_fixes:
+        - text: Fixed a bug in branch ruleset policy evaluation (potential skipping of rules; evaluation of system logs confirmed that this codepath was not executed in production)
+          issues: [SIGN-7710]
+- date: '2025-04-10'
+  updates:
+    teamcity_plugin:
+      version: '0.1.0'
+      new_features:
+        - text: 'Initial release: TeamCity Plugin is now supported as a [Trusted Build System](/documentation/trusted-build-systems).'
+    teamcity_connector:
+      version: '0.1.0'
+      new_features:
+        - text: 'Initial release: TeamCity Plugin is now supported as a [Trusted Build System](/documentation/trusted-build-systems).'
+- date: '2025-04-09'
+  updates:
+    azure_devops_extension:
+      version: '4.0.1'
+      new_features:
+        - text: 'Azure DevOps (dev.azure.com) is now supported as a [Trusted Build System](/documentation/trusted-build-systems) (In Preview).'
+- date: '2025-04-08'
+  updates:
+    application:
+      version: 1.185.0
+      improvements:
+        - text: Personal API tokens of interactive users can now be used in combination with trusted build systems/origin verification.
+          issues: [SIGN-7693]
+        - text: Performance improvement for group membership changes (especially for groups with frequent changes).
+          issues: [SIGN-7532]
 - date: '2025-03-25'
   updates:
     application:
