@@ -67,7 +67,7 @@ This ensures that the integrity of the signing request and artifact are preserve
 
 ### Usage scenario
 
-<!-- TODO: "trusting the test certificates" should link to /code-signing/test-certificates
+<!-- TODO: "trusting the test certificates" should link to /code-signing/test-certificates -->
 
 A typical release scenarios would look like this:
 
