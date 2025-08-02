@@ -22,8 +22,6 @@ An interactive user account is required for people who administer your SignPath 
 
 To get access to an existing SignPath organizations, users must be [invited](#invitations) or [synchronized](#directory-sync).
 
-Only [sign up][login page] for a new user account if you want to evaluate SignPath using a free trial subscrition.
-
 | User account type               | Provider                              | How to use                            | Editions   
 |---------------------------------|---------------------------------------|---------------------------------------|------------
 | Social account                  | Google or Microsoft                   | Click _Google_ or _Microsoft_ to use an existing user account
