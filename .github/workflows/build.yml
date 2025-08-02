@@ -11,7 +11,7 @@ on:
         type: string
       target_host:
         description: 'The target host for this build'
-        default: 'about.signpath.io'
+        default: 'docs.signpath.io'
         required: false
         type: string
 
@@ -26,7 +26,7 @@ jobs:
       - name: Change Jekyll Config
         if: ${{ inputs.target_environment != 'production' }}
         run: >
-          sed -i 's/https:\/\/about.signpath.io/https:\/\/${{ inputs.target_host }}/' docs/_config.yml && 
+          sed -i 's/https:\/\/docs.signpath.io/https:\/\/${{ inputs.target_host }}/' docs/_config.yml && 
           sed -i -E 's/target_environment:.*/target_environment: ${{ inputs.target_environment }}/' docs/_config.yml
         shell: bash
       - name: Create Sitemap
