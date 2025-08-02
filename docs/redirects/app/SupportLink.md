@@ -1,4 +1,4 @@
 ---
 # Used on swagger
-redirect_to: /support
+redirect_to: https://signpath.io/support
 ---

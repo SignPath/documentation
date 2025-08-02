@@ -33,6 +33,6 @@ This diagram shows how machine certificates, Double Authentication Proxy and Sig
 
 ![Double Authentication Proxy architecture diagram](/assets/img/resources/double-authentication-proxy.png){:width="500px"}
 
-Contact [our support team](/support) for installable container images and documentation.
+Contact [our support team](https://signpath.io/support) for installable container images and documentation.
 
 

@@ -12,7 +12,7 @@ description: TeamCity
 
 For SignPath to integrate with the TeamCity server, you have to deploy the **SignPath TeamCity Connector** container image in a location that can reach the TeamCity server and install the **SignPath TeamCity Plugin** providing the dedicated build runners.
 
-Contact our [support](/support) team for access to these components.
+Contact our [support](https://signpath.io/support) team for access to these components.
 
 ### On SignPath
 

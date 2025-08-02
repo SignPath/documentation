@@ -108,7 +108,7 @@ Select **Verify origin** if you want to accept only signing requests with positi
 
 ### Malware scanning {#malware-scanning}
 
-Contact [Support](/support) to activate this option. Not available for Open Source Code Signing.
+Contact [Support](https://signpath.io/support) to activate this option. Not available for Open Source Code Signing.
 {:.badge.icon-signpath}
 
 Select **Disable malware scanning** to skip malware scanning for this policy.

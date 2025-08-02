@@ -17,7 +17,7 @@ description: GitHub
 {:.panel.info}
 > **GitHub Enterprise**
 >
-> SignPath hosts an instance of the GitHub connector which is linked to GitHub.com For integrating self-hosted GitHub Enterprise instances, contact our [support](/support) team.
+> SignPath hosts an instance of the GitHub connector which is linked to GitHub.com For integrating self-hosted GitHub Enterprise instances, contact our [support](https://signpath.io/support) team.
 
 ## Checks performed by SignPath
 

@@ -35,7 +35,7 @@ description: Azure DevOps
 {:.panel.info}
 > **Azure DevOps Server**
 >
-> SignPath hosts an instance of the Azure DevOps connector which is linked to dev.azure.com For integrating self-hosted Azure DevOps Server instances, contact our [support](/support) team.
+> SignPath hosts an instance of the Azure DevOps connector which is linked to dev.azure.com For integrating self-hosted Azure DevOps Server instances, contact our [support](https://signpath.io/support) team.
 
 
 ## Checks performed by SignPath
