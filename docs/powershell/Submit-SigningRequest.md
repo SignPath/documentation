@@ -186,7 +186,7 @@ Note: Use either slugs _or_ IDs, don't mix.
 | `-ClientCertificate`                      | `X509Certificate2`| Client certificate used for a secure Web API request. Not directly supported by SignPath, use for proxies. | | {{ site.data.editions | where: "pipeline_integrity.trusted_build_systems", "Optional" | map: "name" | join: ", " }}
 | `-ApiUrl`                                 | `String`          | URL to the SignPath REST API                                  | `https://app.signpath.io/api/`
 | `-Description`                            | `String`          | Optional description of the signing request
-| `-Parameters`                             | `Hashtable`       | Values for [parameters defined in the artifact configuration](https://about.signpath.io/artifact-configuration/syntax#parameters)
+| `-Parameters`                             | `Hashtable`       | Values for [parameters defined in the artifact configuration](/artifact-configuration/syntax#parameters)
 | `-ServiceUnavailableTimeoutInSeconds`     | `Int32`           | Total time in seconds that the cmdlet will wait for a single service call to succeed (across several retries) | 600 seconds
 | `-UploadAndDownloadRequestTimeoutInSeconds` | `Int32`         | HTTP timeout used for upload and download HTTP requests       | 300 seconds
 | `-CancellationTimeoutInSeconds`           | `Int32`           | Timeout in seconds before the signing request gets cancelled (from submission; specify `0` for no timeout)    | if `-WaitForCompletion` is specified: `-WaitForCompletionTimeoutInSeconds` value; otherwise: none
