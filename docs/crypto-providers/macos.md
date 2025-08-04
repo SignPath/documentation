@@ -20,7 +20,7 @@ Simply copy-deploy the `SignPathCryptoTokenKit.app` application to the target sy
 
 ### Configuration
 
-See [SignPath Crypto Providers](/documentation/crypto-providers/#crypto-provider-configuration) for general configuration options.
+See [SignPath Crypto Providers](/crypto-providers/#crypto-provider-configuration) for general configuration options.
 
 ### Background
 

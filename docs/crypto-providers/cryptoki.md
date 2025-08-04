@@ -58,7 +58,7 @@ Check the output of `openssl version` on your target system to select the correc
 
 ### Configuration
 
-See [SignPath Crypto Providers](/documentation/crypto-providers/#crypto-provider-configuration) for general configuration options.
+See [SignPath Crypto Providers](/crypto-providers/#crypto-provider-configuration) for general configuration options.
 
 ### Parameters {#cryptoki-parameters}
 

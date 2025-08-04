@@ -12,7 +12,7 @@ description: Creating GPG signatures with SignPath
 
 ## Terminology
 
-GPG uses various terms for certificates. We use the term **_GPG key_** in our GPG documentation, but keep in mind that other parts of the SignPath documentation will use the general term _certificate_. See [Managing Certificates](/documentation/managing-certificates#certificate-types) for more information.
+GPG uses various terms for certificates. We use the term **_GPG key_** in our GPG documentation, but keep in mind that other parts of the SignPath documentation will use the general term _certificate_. See [Managing Certificates](/managing-certificates#certificate-types) for more information.
 
 ### Using GnuPG with PKCS #11
 
@@ -64,7 +64,7 @@ While executing each signing tool, SignPath is called to perform a hash-based si
 
 For `gnupg-pkcs11-scd`, `stdout` console output must be disabled. Use the log files for troubleshooting.
 
-The [`InitializeSignPathCryptoProviderGpgSigning` helper function](/documentation/crypto-providers/gpg#configure-gnupg) uses the following logging directories:
+The [`InitializeSignPathCryptoProviderGpgSigning` helper function](/crypto-providers/gpg#configure-gnupg) uses the following logging directories:
 
 * SignPath Cryptoki logs: `/tmp/SignPathLogs/<timestamp>.log`
 * `gnupg-pkcs11-scd` logs: `/tmp/SignPathLogs/gnupg-pkcs11-scd.log`

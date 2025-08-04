@@ -85,7 +85,7 @@ msiexec /x SignPathCryptoProviders-$Version.msi /qn /L* uninstall.log | Out-Host
 
 ### Configuration
 
-See [SignPath Crypto Providers](/documentation/crypto-providers/#crypto-provider-configuration) for general configuration options.
+See [SignPath Crypto Providers](/crypto-providers/#crypto-provider-configuration) for general configuration options.
 
 ## Using KSP/CSP parameters of signing tools
 

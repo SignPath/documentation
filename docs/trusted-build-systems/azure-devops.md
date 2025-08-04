@@ -8,7 +8,7 @@ description: Azure DevOps
 
 ## Prerequisites
 
-* In SignPath: [Use the predefined Trusted Build System](/documentation/trusted-build-systems#configuration) _Azure DevOps (dev.azure.com)_.
+* In SignPath: [Use the predefined Trusted Build System](/trusted-build-systems#configuration) _Azure DevOps (dev.azure.com)_.
 * Create an artifact configuration with the following format:
     ```xml
     <?xml version="1.0" encoding="utf-8" ?>
@@ -20,7 +20,7 @@ description: Azure DevOps
       </zip-file>
     </artifact-configuration>
     ```
-    See [Artifact Configurations](/documentation/artifact-configuration) for more details.
+    See [Artifact Configurations](/artifact-configuration) for more details.
 
     {:.panel.info}
     > **Root folder in artifact configuration**
@@ -43,7 +43,7 @@ description: Azure DevOps
 The Azure DevOps connector performs the following checks:
 
 * A build was actually performed by an Azure DevOps pipeline, not by some other entity in possession of the API token
-* [Origin metadata](/documentation/origin-verification) is provided by Azure DevOps, not the build script, and can therefore not be forged
+* [Origin metadata](/origin-verification) is provided by Azure DevOps, not the build script, and can therefore not be forged
 * The artifact is stored on the Azure DevOps server before it is submitted for signing
 
 ## Usage
@@ -90,7 +90,7 @@ steps:
 | `serviceUnavailableTimeoutInSeconds`          | `600`                         | Total time in seconds that the action will wait for a single service call to succeed (across several retries).
 
 | `downloadSignedArtifactTimeoutInSeconds`      | `300`                         | HTTP timeout when downloading the signed artifact. Defaults to 5 minutes.
-| `parameters`                                  |                               | Multiline-string of values that map to [user-defined parameters](/documentation/artifact-configuration/syntax#parameters) in the Artifact Configuration. Use one line per parameter with the format `<name>: "<value>"` where `<value>` needs to be a valid JSON string.
+| `parameters`                                  |                               | Multiline-string of values that map to [user-defined parameters](/artifact-configuration/syntax#parameters) in the Artifact Configuration. Use one line per parameter with the format `<name>: "<value>"` where `<value>` needs to be a valid JSON string.
 
 ### Action output variables
 
