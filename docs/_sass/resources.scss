@@ -21,13 +21,13 @@ main > section.resources-section {
 		padding-right: 16px;
 		display: flex;
 		align-items: flex-start;
-		max-width: calc(#{$content-width} + 240px + 320px - 46px); /* nav bar + toc bar - padding */
+		max-width: calc(#{$content-width} + #{$nav-width} + 20px + #{$toc-width} + 20px - 46px); /* content-width + nav-width(240px) + toc-width(320px) - padding(46px?) */
 
 		& > nav {
 			position: sticky;
 			top: 100px;
-			min-width: 220px;
-			max-width: 220px;
+			min-width: $nav-width;
+			max-width: $nav-width;
 			background-color: $light-grey-background-color;
 			border-radius: 6px;
 			font-size: 0.9em;
