@@ -1,8 +1,8 @@
 name: Build & Deploy FQA
 
 on:
-  push:
-    branches: ["main", "release/*"]
+  #push:
+  #  branches: ["main", "release/*"]
   workflow_dispatch: # Allows you to run this workflow manually from the Actions tab
 
 # Allow one concurrent deployment
