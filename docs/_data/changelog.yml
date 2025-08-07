@@ -50,7 +50,7 @@
             * For details see [API definition](https://app.signpath.io/Api/swagger) of the new routes.
           issues: [SIGN-7786]
         - text: |-
-            Added `subject` and `author` [`<msi-file>` metadata restrictions](/documentation/artifact-configuration/reference#metadata-restrictions).
+            Added `subject` and `author` [`<msi-file>` metadata restrictions](/artifact-configuration/reference#metadata-restrictions).
           issues: [SIGN-7695]
     self_hosted_installations:
       version: 1.191.0
@@ -73,11 +73,11 @@
         - text: |
             Cryptoki/PKCS#11: project and signing policy can now be specified via environment variables or config file.
             * GPG: this removes the need to provide a dedicated CI user for each signing policy. GPG signing samples now use these parameters.
-            * GPG: the [`InitializeSignPathCryptoProviderGpgSigning` helper function](/documentation/crypto-providers/gpg#configure-gnupg) now fully configures GPG; no more need to run `ImportSignPathGpgPublicKey`.
-            * Configuration: see [Crypto Provider configuration](/documentation/crypto-providers#crypto-provider-configuration).
+            * GPG: the [`InitializeSignPathCryptoProviderGpgSigning` helper function](/crypto-providers/gpg#configure-gnupg) now fully configures GPG; no more need to run `ImportSignPathGpgPublicKey`.
+            * Configuration: see [Crypto Provider configuration](/crypto-providers#crypto-provider-configuration).
           issues: [SIGN-7580, SIGN-7581]
         - text: |
-            Improved the default logging locations for GPG signing, see [GPG docs](/documentation/crypto-providers/gpg#gpg-error-logs).
+            Improved the default logging locations for GPG signing, see [GPG docs](/crypto-providers/gpg#gpg-error-logs).
           issues: [SIGN-7581]
 - date: '2025-06-17'
   updates:
@@ -173,7 +173,7 @@
       version: 1.188.0
       improvements:
         - text: |
-            Support [user-defined parameters](/documentation/artifact-configuration/syntax#parameters) for `hash-algorithm` attribute of [`<create-raw-signature>`](/documentation/artifact-configuration/reference#create-raw-signature).
+            Support [user-defined parameters](/artifact-configuration/syntax#parameters) for `hash-algorithm` attribute of [`<create-raw-signature>`](/artifact-configuration/reference#create-raw-signature).
           issues: [SIGN-6928]
       changes:
         - text: |
@@ -253,17 +253,17 @@
     teamcity_plugin:
       version: '0.1.0'
       new_features:
-        - text: 'Initial release: TeamCity Plugin is now supported as a [Trusted Build System](/documentation/trusted-build-systems).'
+        - text: 'Initial release: TeamCity Plugin is now supported as a [Trusted Build System](/trusted-build-systems).'
     teamcity_connector:
       version: '0.1.0'
       new_features:
-        - text: 'Initial release: TeamCity Plugin is now supported as a [Trusted Build System](/documentation/trusted-build-systems).'
+        - text: 'Initial release: TeamCity Plugin is now supported as a [Trusted Build System](/trusted-build-systems).'
 - date: '2025-04-09'
   updates:
     azure_devops_extension:
       version: '4.0.1'
       new_features:
-        - text: 'Azure DevOps (dev.azure.com) is now supported as a [Trusted Build System](/documentation/trusted-build-systems) (In Preview).'
+        - text: 'Azure DevOps (dev.azure.com) is now supported as a [Trusted Build System](/trusted-build-systems) (In Preview).'
 - date: '2025-04-08'
   updates:
     application:
