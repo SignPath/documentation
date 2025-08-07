@@ -4,7 +4,7 @@
       version: 1.194.0
       bug_fixes:
         - text: |-
-            Fixed missing webhook call response body download for failed webhook calls on signing request details page.
+            Fixed webhook call response body download for failed webhook calls on signing request details page.
           issues: [SIGN-7749]
 - date: '2025-07-15'
   updates:
