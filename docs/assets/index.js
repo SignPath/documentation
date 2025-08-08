@@ -127,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 
-  if (window.location.pathname.endsWith('/pricing/') || window.location.pathname.endsWith('/pricing') || window.location.pathname.endsWith('/pricing.html/') || window.location.pathname.endsWith('/pricing.html')) {
+  if (window.location.pathname.endsWith('/change-subscription/') || window.location.pathname.endsWith('/change-subscription') || window.location.pathname.endsWith('/change-subscription.html/') || window.location.pathname.endsWith('/change-subscription.html')) {
 
     // read params
     let params = {};
