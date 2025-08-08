@@ -1,5 +1,6 @@
 ---
 # renders the svg alone
+layout:
 ---
 {%- if site.data.status.current.type == "good" -%}
 	{%- include status_good.svg -%}
