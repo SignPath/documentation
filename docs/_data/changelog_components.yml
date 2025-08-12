@@ -1,47 +1,29 @@
-# required for lists
 components:
-  - application
-  - self_hosted_installations
-  - powershell_module
-  - powershell_module_docker
-  - crypto_providers
-  - macos_cryptotokenkit
-  - github_connector
-  - github_actions_action
-  - jenkins_plugin
-  - teamcity_plugin
-  - teamcity_connector
-  - azure_devops_connector
-  - azure_devops_extension
-  - scim_connector
-
-# used for lookup
-details:
-  application: 
+  - id: application
     label: 'Application'
-  self_hosted_installations: 
+  - id: self_hosted_installations
     label: 'Application (self-hosted only)'
-  powershell_module: 
+  - id: powershell_module
     label: 'PowerShell Module'
-  powershell_module_docker: 
+  - id: powershell_module_docker
     label: 'Docker PowerShell Module'
-  crypto_providers: 
-    label: 'Crypto Providers'
-  macos_cryptotokenkit:
+  - id: crypto_providers
+    label: 'Crypto Providers (Windows, Linux)'
+  - id: macos_cryptotokenkit
     label: 'macOS CryptoTokenKit'
-  github_connector: 
+  - id: github_connector
     label: 'GitHub Connector'
-  github_actions_action:
-    label: 'GitHub Actions Action'
-  jenkins_plugin: 
+  - id: github_actions_action
+    label: 'GitHub Action'
+  - id: jenkins_plugin
     label: 'Jenkins Plugin'
-  teamcity_plugin:
+  - id: teamcity_plugin
     label: 'TeamCity Plugin'
-  teamcity_connector:
+  - id: teamcity_connector
     label: 'TeamCity Connector'
-  azure_devops_extension:
+  - id: azure_devops_extension
     label: 'Azure DevOps Extension'
-  azure_devops_connector:
+  - id: azure_devops_connector
     label: 'Azure DevOps Connector'
-  scim_connector:
+  - id: scim_connector
     label: 'SCIM Connector'

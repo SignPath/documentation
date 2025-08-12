@@ -1,6 +1,7 @@
 {%- comment -%} 
----------------- find the last update for the passed in category (or take the latest entry)
-{%- endcomment -%}
+  input parameter: "category" (component id)
+
+---------------- find the last update for the passed in category (or take the latest entry){%- endcomment -%}
 {%- if include.category -%}
   {%- assign id = 'https://docs.signpath.io/changelog/feeds/' | append: include.category | append: '.xml' -%}
   {%- for entry in site.data.changelog -%}
@@ -26,8 +27,8 @@
 <updated>{{ updated | date: '%F' }}</updated>
 <id>{{ id }}</id>
 {%- assign category = include.category -%}
-{%- assign include_category_name = site.data.changelog_components.details[category].label -%}
-<title type="html">SignPath - {{ include_category_name }} Changelog</title>
+{%- assign selected_component = site.data.changelog_components.components | where: "id", category | first -%}
+<title type="html">SignPath - {{ selected_component.label }} Changelog</title>
 <author>
   <name>SignPath GmbH</name>
   <uri>https://signpath.io</uri>
@@ -35,16 +36,17 @@
 {%- for entry in site.data.changelog -%}
   {%- if entry.updates -%}
     {%- for update in entry.updates -%}
-      {%- assign component = update[0] -%}
+      {%- assign componentid = update[0] -%}
+			{%- assign component = site.data.changelog_components.components | where: "id", componentid | first -%}
       {%- assign release = update[1] -%}
-      {%- if include.category == nil or include.category == component -%}
+      {%- if include.category == nil or include.category == componentid -%}
       <entry>
-        <id>tag:docs.signpath.io,{{ entry.date | date: '%F'}}:{{ component }}:{{ release.version }}</id>
-        <title>SignPath {{ site.data.changelog_components.details[component].label }} {{ release.version }}</title>
+        <id>tag:docs.signpath.io,{{ entry.date | date: '%F'}}:{{ componentid }}:{{ release.version }}</id>
+        <title>SignPath {{ component.label }} {{ release.version }}</title>
         <updated>{{ entry.date | date: '%F' }}</updated>
         <published>{{ entry.date | date: '%F' }}</published>
         <link rel="alternate" href="https://docs.signpath.io/changelog#{{ entry.date | date: '%F' }}" />
-        <category term="release/{{ component }}" label="{{ site.data.changelog_components.details[component].label }}" />
+        <category term="release/{{ componentid }}" label="{{ component.label }}" />
         <summary type="html">New Release: {{ category_label }} {{ release.version }}</summary>
         <content type="html">
           &lt;div&gt;

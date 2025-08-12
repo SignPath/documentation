@@ -16,7 +16,7 @@ redirect_from:
 		<select id='changelog-component-select'>
 			<option value='all'>All components</option>
 			{%- for component in site.data.changelog_components.components -%}
-			  <option value='{{ component }}'>{{ site.data.changelog_components.details[component].label }}</option>
+			  <option value='{{ component.id }}'>{{ component.label }}</option>
 			{%- endfor -%}
 		</select>
 	</div>
@@ -68,9 +68,9 @@ redirect_from:
 {% endcomment %}
 {% assign class_list = 'release' %}
 {% for update in entry.updates %}
-	{% comment %} extract the component (e.g. application) {% endcomment %}
-	{% assign component = update[0] %}
-	{% assign class_list = class_list | append: ' component-' | append: component %}
+	{% comment %} extract the component id (e.g. application) {% endcomment %}
+	{% assign componentid = update[0] %}
+	{% assign class_list = class_list | append: ' component-' | append: componentid %}
 	{% assign release = update[1] %}
 	{% for changes_per_type in release %}
 	  {% assign change_type = changes_per_type[0] %}
@@ -88,9 +88,9 @@ redirect_from:
 		{% for update in entry.updates %}
 			
 			{% comment %} 
-			---------------- extract the component (e.g. application, crypto_providers, etc.) and release 
+			---------------- extract component id (e.g. application, crypto_providers, etc.) and release 
 			{% endcomment %}
-			{% assign component = update[0] %}
+			{% assign componentid = update[0] %}
 			{% assign release = update[1] %}
 			
 			{% assign component_change_type_class_list = 'component' %}
@@ -99,13 +99,14 @@ redirect_from:
 			  {% assign component_change_type_class_list = component_change_type_class_list | append: ' change_type-' | append: change_type %}
 			{% endfor %}
 
-			<div class='component-{{ component }} {{ component_change_type_class_list }}'>
-			<h2>{{ site.data.changelog_components.details[component].label }} {{ release.version }}</h2>
+			<div class='component-{{ componentid }} {{ component_change_type_class_list }}'>
+			{% assign component = site.data.changelog_components.components | where: "id", componentid | first %}
+			<h2>{{ component.label }} {{ release.version }}</h2>
 			
 			{% for changes_per_type in release %}
 				
-				{% comment %} 
-				---------------- extract change_type (e.g. new_features, improvements, bug_fixes) and actual change log {% endcomment %} 
+			  {% comment %} 
+			  ---------------- extract change_type (e.g. new_features, improvements, bug_fixes) and actual change log {% endcomment %} 
 			  {% assign change_type = changes_per_type[0] %}
 			  {% assign changes = changes_per_type[1] %}
 			  
