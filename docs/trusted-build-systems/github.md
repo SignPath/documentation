@@ -77,6 +77,7 @@ steps:
 | `service-unavailable-timeout-in-seconds`      | `600`                                          | Total time in seconds that the action will wait for a single service call to succeed (across several retries).
 | `download-signed-artifact-timeout-in-seconds` | `300`                                          | HTTP timeout when downloading the signed artifact.
 | `parameters`                                  |                                                | Multiline-string of values that map to [user-defined parameters] in the Artifact Configuration. Use one line per parameter with the format `<name>: "<value>"` where `<value>` needs to be a valid JSON string.
+{:.break-code}
 {% endraw %}
 
 [token-auth]: https://docs.github.com/en/actions/security-guides/automatic-token-authentication
