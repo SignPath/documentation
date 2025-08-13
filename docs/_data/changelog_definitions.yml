@@ -1,0 +1,79 @@
+components:
+  - id: application
+    label: 'Application'
+    categories: [application]
+  - id: self_hosted_installations
+    label: 'Application (self-hosted only)'
+    categories: [application]
+  - id: powershell_module
+    label: 'PowerShell Module'
+    categories: [powershell]
+  - id: powershell_module_docker
+    label: 'Docker PowerShell Module'
+    categories: [powershell]
+  - id: crypto_providers
+    label: 'Crypto Providers (Windows, Linux)'
+    categories: [crypto_providers]
+  - id: macos_cryptotokenkit
+    label: 'macOS CryptoTokenKit'
+    categories: [crypto_providers]
+  - id: github_connector
+    label: 'GitHub Connector'
+    categories: [github, connectors]
+  - id: github_actions_action
+    label: 'GitHub Action'
+    categories: [github, plugins]
+  - id: jenkins_plugin
+    label: 'Jenkins Plugin'
+    categories: [jenkins, plugins]
+  - id: teamcity_plugin
+    label: 'TeamCity Plugin'
+    categories: [teamcity, plugins]
+  - id: teamcity_connector
+    label: 'TeamCity Connector'
+    categories: [teamcity, connectors]
+  - id: azure_devops_extension
+    label: 'Azure DevOps Extension'
+    categories: [azure_devops, plugins]
+  - id: azure_devops_connector
+    label: 'Azure DevOps Connector'
+    categories: [azure_devops, connectors]
+  - id: scim_connector
+    label: 'SCIM Connector'
+    categories: [connectors]
+
+categories:
+  - id: application
+    label: Application
+  - id: powershell
+    label: PowerShell Modules
+  - id: connectors
+    label: Connectors
+  - id: plugins
+    label: CI/CD Plugins and Extensions
+  - id: github
+    label: GitHub
+  - id: jenkins
+    label: Jenkins
+  - id: teamcity
+    label: TeamCity
+  - id: azure_devops
+    label: Azure DevOps
+  - id: crypto_providers
+    label: Crypto Providers
+
+change_types:
+  - id: all
+    label: All changes
+  - id: breaking_changes
+    label: Breaking changes
+  - id: upgrade_information
+    label: Upgrade information
+  - id: new_features
+    label: New features
+  - id: improvements
+    label: Improvements
+  - id: changes
+    label: Changes
+  - id: bug_fixes
+    label: Bug fixes

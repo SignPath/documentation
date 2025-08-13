@@ -121,8 +121,9 @@
           issues: [SIGN-6856]
     self_hosted_installations:
       version: 1.189.0
-      upgrade_information: Additional migration steps happen in final application migration phase. **Expect longer downtime than usual** (exact downtime depends on number of total signing requests and database performance; contact support for details).
-        # issue: SIGN-7672
+      upgrade_information:
+        - text: Additional migration steps happen in final application migration phase. **Expect longer downtime than usual** (exact downtime depends on number of total signing requests and database performance; contact support for details).
+          issues: [SIGN-7672]
       breaking_changes:
         - text: |-
             `signpath-application` chart: renamed `appSecrets.setupDb.connectionStrings.reportModelDatabaseDdl` to `signingRequestDatabaseDdl` and `appSecrets.shared.connectionStrings.reportModelDatabase` to `signingRequestDatabase`. Note: only the values' _paths_ have changed; keep the values as they are.
@@ -206,7 +207,8 @@
               * `GET /SigningRequests/{signingRequestId}/SignedArtifact`
     self_hosted_installations:
       version:  1.187.0
-      upgrade_information: Minimum required version to upgrade from is 1.140. In case you have an older version, you first need to upgrade to a previous version (e.g. 1.186, contact support). **[Updated 2025-05-19]**
+      upgrade_information:
+        - text: Minimum required version to upgrade from is 1.140. In case you have an older version, you first need to upgrade to a previous version (e.g. 1.186, contact support). **[Updated 2025-05-19]**
         # issue: SIGN-7723
       improvements:
         - text: 'All configuration settings of each container instance are now dumped into a file at startup for easier troubleshooting (except secrets).'
@@ -1641,8 +1643,8 @@
         - text: Support for using mutual TLS client certificates specified by a Microsoft template ID.
           issues: [SIGN-5710]
     self_hosted_installations:
-      breaking_changes:
-        - text: '_No change required:_ After the upgrade the report model database will be automatically built up from scratch. This means that for a while (depending on the number of signing requests) the signing request list in the UI and the CSV report may be incomplete until the report model building reached the latest signing requests.'
+      upgrade_information:
+        - text: After the upgrade the report model database will be automatically built up from scratch. This means that for a while (depending on the number of signing requests) the signing request list in the UI and the CSV report may be incomplete until the report model building reached the latest signing requests.
 - date: '2023-04-25'
   updates:
     application:
@@ -2289,7 +2291,8 @@
           issues: [SIGN-4592]
     self_hosted_installations:
       version: 1.106.0
-      upgrade_information: The `Configuration.yml` file does not contain settings for the connection strings any more. Connection strings are now handled as secrets by default. However, for migration purposes, the connection strings can still be added to the `Configuration.yml` and referencing secret files is still supported.
+      upgrade_information: 
+          - text: The `Configuration.yml` file does not contain settings for the connection strings any more. Connection strings are now handled as secrets by default. However, for migration purposes, the connection strings can still be added to the `Configuration.yml` and referencing secret files is still supported.
       improvements:
         - text: The secret handling has been unified between the Docker Compose and K8s deployment targets.
           issues: [SIGN-4481]

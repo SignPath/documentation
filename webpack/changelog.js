@@ -57,7 +57,7 @@ export function changelog() {
 		document.getElementById('changelog-component-select').value = component;
 
 		let change_type = url.searchParams.get('change_type');
-		show_hide_change_type(change_type);
+		show_hide_change_types(change_type);
 		document.getElementById('changelog-change_type-select').value = change_type;
 	}
 
