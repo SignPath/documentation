@@ -3,7 +3,7 @@
     github_connector:
       version: 1.9.0
       bug_fixes:
-        - text: Fixed a bug that triggered runner group policy violations for GitHub workflow jobs that do not execute any steps and therefore do not have a runner agent assigned.
+        - text: Fixed: GitHub workflow jobs that do not execute any steps caused violations of _runner group_ policies. (Cause: these jobs do not have a runner agent assigned.)
           issues: [SIGN-7984] 
 - date: '2025-07-15'
   updates:
