@@ -1,3 +1,23 @@
+- date: '2025-08-26'
+  updates:
+    application:
+      version: 1.195.0
+      improvements:
+        - text: |-
+            REST API: All status 4xx error response bodies conform to the [RFC9457](https://datatracker.ietf.org/doc/html/rfc9457) "Problem Details" JSON format:
+            * Previously only some 400 "bad request" error responses used RFC9457, others just contained a simple error plain text body.
+            * In case REST API clients process _error response bodies_ they may require adaptions.
+          issues: [SIGN-7868]
+      bug_fixes:
+        - text: |-
+            REST API: fix typo in `GET /v1/{organizationId}/Organization` route: renamed `maxNumberOfIndiviudualSignatures` property to `maxNumberOfIndividualSignatures`.
+          issues: [SIGN-7997]
+    self_hosted_installations:
+      version: 1.195.0
+      improvements:
+        - text: |-
+            The extra delay for artifact deletions/archiving (after the the background job selected eligible signing requests) has been reduced from 24h to 1 hour.
+          issues: [SIGN-7988]
 - date: '2025-08-12'
   updates:
     application:
