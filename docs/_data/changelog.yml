@@ -4,9 +4,9 @@
       version: 1.195.0
       improvements:
         - text: |-
-            REST API: All status 4xx error response bodies conform to the [RFC9457](https://datatracker.ietf.org/doc/html/rfc9457) "Problem Details" JSON format:
-            * Previously only some 400 "bad request" error responses used RFC9457, others just contained a simple error plain text body.
-            * In case REST API clients process _error response bodies_ they may require adaptions.
+            REST API: All status 4xx error response bodies conform to the [RFC9457](https://datatracker.ietf.org/doc/html/rfc9457) "problem details" JSON format:
+            * Previously, only some 400 "bad request" error responses used RFC9457, other 400 responses and also 401/403 just contained a simple plain text body with the error message.
+            * In case REST API clients process _error response bodies_, they may require adaptions.
           issues: [SIGN-7868]
       bug_fixes:
         - text: |-
