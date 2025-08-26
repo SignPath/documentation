@@ -1,3 +1,31 @@
+- date: '2025-08-26'
+  updates:
+    application:
+      version: 1.195.0
+      improvements:
+        - text: |-
+            REST API: All status 4xx error response bodies now conform to the [RFC9457](https://datatracker.ietf.org/doc/html/rfc9457) "problem details" JSON format.
+            * Previously, _some_ 400 "bad request" error responses used RFC9457. Other 400 responses and 401/403 responses just contained a simple plain text body with the error message.
+            * REST API clients that process _error response bodies_ may require adaptions.
+          issues: [SIGN-7868]
+      bug_fixes:
+        - text: |-
+            REST API: fixed typo in `GET /v1/{organizationId}/Organization` route: renamed `maxNumberOfIndiviudualSignatures` property to `maxNumberOfIndividualSignatures`.
+          issues: [SIGN-7997]
+    self_hosted_installations:
+      version: 1.195.0
+      improvements:
+        - text: |-
+            An internal delay for deleting/archiving artifacts has been reduced from 24 hours to 1 hour.
+          issues: [SIGN-7988]
+- date: '2025-08-12'
+  updates:
+    application:
+      version: 1.194.0
+      bug_fixes:
+        - text: |-
+            Fixed: response was not stored for webhook calls that returned an error, display link failed.
+          issues: [SIGN-7749]
 - date: '2025-08-21'
   updates:
     github_connector:
@@ -23,7 +51,7 @@
       version: '3.2.0'
       improvements:
         - text: Improved the performance and logging.
-          issues: [SIGN-7681, SIGN-7735, SIGNm-7910]
+          issues: [SIGN-7681, SIGN-7735, SIGN-7910]
     azure_devops_connector:
       version: '0.4.0'
       bug_fixes:
