@@ -26,6 +26,14 @@
         - text: |-
             Fixed: response was not stored for webhook calls that returned an error, display link failed.
           issues: [SIGN-7749]
+- date: '2025-08-21'
+  updates:
+    github_connector:
+      version: 1.9.0
+      bug_fixes:
+        - text: |
+            Fixed: GitHub workflow jobs that do not execute any steps caused violations of _runner group_ policies. (Cause: these jobs do not have a runner agent assigned.)
+          issues: [SIGN-7984] 
 - date: '2025-07-15'
   updates:
     application:
