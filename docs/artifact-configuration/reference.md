@@ -249,7 +249,7 @@ The `create-cms-signature` directive supports the following parameters:
     <file path="myfile.bin">
       <create-cms-signature output-encoding="pem" output-file-name="${file.name}.cms.pem"
          hash-algorithm="sha256" rsa-padding="pkcs1" />
-    </pe-file>
+    </file>
   </zip-file>
 </artifact-configuration>
 ~~~
@@ -363,7 +363,7 @@ The `create-raw-signature` directive supports the following parameters:
   <zip-file>
     <file path="myfile.bin">
       <create-raw-signature output-file-name="${file.name}.sig" hash-algorithm="sha256" />
-    </pe-file>
+    </file>
   </zip-file>
 </artifact-configuration>
 ~~~
