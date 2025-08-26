@@ -47,7 +47,7 @@ export function changelog() {
 
 	// parse url to already show hide components on startup
 	const url = new URL(location);
-	if (url.searchParams.has('component')) {
+	if (url.searchParams.has('component') || url.searchParams.has('change_type')) {
 		let component = url.searchParams.get('component') || 'all';
 		document.getElementById('changelog-component-select').value = component;
 
