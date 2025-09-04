@@ -1,3 +1,12 @@
+- date: '2025-09-08'
+  updates:
+    powershell_module:
+      version: 4.4.4
+      improvements:
+        - text: |-
+            Changed the links in the cmdlet descriptions to point to the new [docs.signpath.io](https://docs.signpath.io) website.
+          issues:
+            [SIGN-6924, SIGN-7981]
 - date: '2025-08-26'
   updates:
     application:
