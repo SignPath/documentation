@@ -7,7 +7,7 @@
             REST API: various enhancements to enable/improve client (code) generation.
             * Introduced a new `POST /v1/{organizationId}/SigningRequests/SubmitWithArtifact` route.
               * This route replaces the now deprecated `POST /v1/{organizationId}/SigningRequests` route.
-              * The new route has the same input as the deprecated one, but an improved response contract, which includes metadata for the created signing request.
+              * The new route has the same input as the deprecated one, but an improved _response_ contract, which includes metadata for the created signing request.
               * Further, it does _not anymore_ accept "fast signing" requests for hash signing, instead there is a new dedicated `POST /v1/{organizationId}/SigningRequests/SignHash` route.
             * Fixes/improvement in the [API definition](https://app.signpath.io/Api/swagger) for client (code) generation:
               * Each route now has an "operation ID".
