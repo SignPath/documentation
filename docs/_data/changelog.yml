@@ -17,7 +17,7 @@
         - text: |-
             REST API: improvements and fixes in the [API definition](https://app.signpath.io/Api/swagger) for better OpenAPI client code generation
               * Each route now has an "operation ID"
-              * Improved the order of route segments like `{organizationId}` in the schema to match the order in the routes
+              * Order of route segments in the schema now matches the order in the routes (e.g. `{organizationId}`)
               * Added `format=uuid` annotation for `{organizationId}` segments
               * Fixed some incorrect `required` and some missing `nullable:false` annotations
               * Added the previously hidden `GET /v1/{organizationId}/Cryptoki/MySigningPolicies` route (used for hash signing)
