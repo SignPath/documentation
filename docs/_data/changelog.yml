@@ -1,3 +1,36 @@
+- date: '2025-09-09'
+  updates:
+    application:
+      version: 1.196.0
+      improvements:
+        - text: |-
+            REST API: `POST SigningRequest` route split for more specific contracts
+            * Deprecated `POST /v1/{organizationId}/SigningRequests`
+            * New `POST /v1/{organizationId}/SigningRequests/SubmitWithArtifact` route
+               * Replaces `POST SigningRequests` for `isFastSigningRequest=false`
+               * Improved _response_ contract with metadata for the created signing request
+            * New `POST /v1/{organizationId}/SigningRequests/SignHash` route
+               * Replaces `POST SigningRequests` for `isFastSigningRequest=true`
+               * _Request_ contract now includes payload
+               * Improved _response_ contract with metadata for the created signing request
+          issues: [SIGN-8017]
+        - text: |-
+            REST API: improvements and fixes in the [API definition](https://app.signpath.io/Api/swagger) for better OpenAPI client code generation
+              * Each route now has an "operation ID"
+              * Order of route segments in the schema now matches the order in the routes (e.g. `{organizationId}`)
+              * Added `format=uuid` annotation for `{organizationId}` segments
+              * Fixed some incorrect `required` and some missing `nullable:false` annotations
+              * Added the previously hidden `GET /v1/{organizationId}/Cryptoki/MySigningPolicies` route (used for hash signing)
+          issues: [SIGN-8017]
+- date: '2025-09-08'
+  updates:
+    powershell_module:
+      version: 4.4.4
+      improvements:
+        - text: |-
+            Changed the links in the cmdlet descriptions to point to the new [docs.signpath.io](https://docs.signpath.io) website.
+          issues:
+            [SIGN-6924, SIGN-7981]
 - date: '2025-08-26'
   updates:
     application:
