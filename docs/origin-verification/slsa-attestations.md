@@ -19,14 +19,21 @@ This section describes the build types for SLSA attestations that are supported 
 
 ### Common Parameters
 
-All build types contain the following `buildDefinition` section within the `externalParameters`:
+All build types contain the following `externalParameters`:
 
-| Field           | Description |
-| -------         | ------------------------------- |
-| `path`          | The path to the build definition file within the commit. |
-| `branch`        | If available, the source code branch containing the build definition at the time of the build. |
-| `commitId`      | The source code version of the build definition that was used. |
-| `repository`    | The source code repository identifier where the build definition is located. |
+| Field                            | Description
+| ---------------------------------| -------------------------------
+| `buildDefinition.git.path`       | The path to the build definition file within the commit.
+| `buildDefinition.git.branch`     | If available, the source code branch containing the build definition at the time of the build.
+| `buildDefinition.git.commitId`   | The source code version of the build definition that was used.
+| `buildDefinition.git.repository` | The source code repository identifier where the build definition is located.
+
+All build types contain the following `internalParameters`:
+
+| Field                | Description
+|----------------------|-----------------------------------
+| `signingRequest.url` | The URL of the signing request that processed the artifact
+
 
 #### Example
 
@@ -35,10 +42,20 @@ All build types contain the following `buildDefinition` section within the `exte
 {
     "buildDefinition":
     {
-        "path": ".github/workflows/build.yml",
-        "branch": "refs/heads/main",
-        "commitId": "d17077cc10b045ead742c397a4caebe1530efaf3",
-        "repository": "https://github.com/my-org/my-repo"
+        "git":
+        {
+            "path": ".github/workflows/build.yml",
+            "branch": "refs/heads/main",
+            "commitId": "d17077cc10b045ead742c397a4caebe1530efaf3",
+            "repository": "https://github.com/my-org/my-repo"
+        }
+    }
+},
+"internalParameters":
+{
+    "signingRequest": 
+    {
+        "url": "https://app.signpath.io/Web/1c2dbf99-f3e7-4030-bbd3-b4ffb160b60a/SigningRequests/a391b5cd-f73f-4873-9b06-ed736eb6744f"
     }
 }
 ```
@@ -48,11 +65,11 @@ All build types contain the following `buildDefinition` section within the `exte
 
 This section describes the guarantees made by SignPath for each SLSA Level. They are expressed by the following `runDetails.builder.id` values within the provenance:
 
-| Builder ID                                              | Details                                        |
-| ----------                                              | -------------------------------------------    |
-| `https://signpath.io/slsa/builder/generic/level1`       | SLSA Level 1, independent of the build system. |
-| `https://signpath.io/slsa/builder/generic/level2`       | SLSA Level 2, independent of the build system. |
-| `https://signpath.io/slsa/builder/$build-system/level3` | SLSA Level 3, where `$build-system` specifies the associated build system. |
+| Builder ID                                              | Details
+| --------------------------------------------------------| ------------------------------------------
+| `https://signpath.io/slsa/builder/generic/level1`       | SLSA Level 1, independent of the build system.
+| `https://signpath.io/slsa/builder/generic/level2`       | SLSA Level 2, independent of the build system.
+| `https://signpath.io/slsa/builder/$build-system/level3` | SLSA Level 3, where `$build-system` specifies the associated build system.
 
 The following `$build-system` values are currently supported:
 * `azure-devops`: A build from the [Azure DevOps](/documentation/trusted-build-systems/azure-devops) build system hosted by Microsoft in the cloud (at dev.azure.com).
@@ -108,31 +125,31 @@ Guarantee: If the provenance is signed by SignPath, the build was executed on a 
 {:.quote}
 > It MUST NOT be possible for two builds that overlap in time to influence one another, such as by altering the memory of a different build process running on the same machine.
 
-| Build System   | Guarantee                      |
-| --             | ------------------------------ |
+| Build System   | Guarantee
+|----------------| ------------------------------
 | Azure DevOps   | The build was executed on a runner from the Microsoft-hosted pools, which offer isolation (see [the official documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/security/misc))
 | GitHub Actions | The build was executed on a GitHub-hosted runner, each job is run in a fresh instance of the runner image (see [the official documentation](https://docs.github.com/en/actions/how-tos/manage-runners/github-hosted-runners/use-github-hosted-runners))
 
 {:.quote}
 > It MUST NOT be possible for one build to persist or influence the build environment of a subsequent build. In other words, an ephemeral build environment MUST be provisioned for each build.
 
-| Build System   | Guarantee                      |
-| --             | ------------------------------ |
+| Build System   | Guarantee
+|----------------| ------------------------------
 | Azure DevOps   | The build was executed on a runner from the Microsoft-hosted pools, which provide a clean virtual machien for each build run (see [the official documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/security/misc))
 | GitHub Actions | The build was executed on a GitHub-hosted runner, each job is run in a fresh instance of the runner image (see [the official documentation](https://docs.github.com/en/actions/how-tos/manage-runners/github-hosted-runners/use-github-hosted-runners))
 
 {:.quote}
 > It MUST NOT be possible for one build to inject false entries into a build cache used by another build, also known as “cache poisoning”. In other words, the output of the build MUST be identical whether or not the cache is used.
 
-| Build System   | Guarantee                      |
-| --             | ------------------------------ |
+| Build System   | Guarantee
+|----------------| ------------------------------
 | Azure DevOps   | Cache usage has to be explicitly defined in the pipeline definition and cannot be shared across pipelines or branches (see [the official documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/release/caching?view=azure-devops&tabs=bundler#cache-isolation-and-security))
 | GitHub Actions | Cache usage has to be explicitly defined in the workflow definition (see [the official definition](https://docs.github.com/en/actions/reference/workflows-and-actions/dependency-caching))
 
 {:.quote}
 > The build platform MUST NOT open services that allow for remote influence unless all such interactions are captured as externalParameters in the provenance
 
-| Build System   | Guarantee                      |
-| --             | ------------------------------ |
+| Build System   | Guarantee
+|----------------| ------------------------------
 | Azure DevOps   | The build was executed on a runner from the Microsoft-hosted pools, which do not provide the ability to remotely connect (see [the official documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/agents/hosted)).
 | GitHub Actions | The build was executed on a GitHub-hosted runner which does not provide the ability to remotely connect, unless explicitly specified in the build definition (see [the official documentation](https://docs.github.com/en/actions/how-tos/manage-runners/github-hosted-runners/connect-to-a-private-network)) 
