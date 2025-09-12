@@ -73,12 +73,18 @@ This section describes the build types for SLSA attestations created by SignPath
 
 ### External parameters
 
-| Field                         | Type   | Example                                    | Description 
-|-------------------------------|--------|--------------------------------------------|--------------
-| `buildDefinition.path`        | string | `.github/workflows/build.yml`              | The path to the build definition file within the commit.
-| `buildDefinition.branch`      | string | `refs/heads/main`                          | If available, the source code branch containing the build definition at the time of the build.
-| `buildDefinition.commitId`    | string | `d17077cc10b045ead742c397a4caebe1530efaf3` | The source code version of the build definition that was used.
-| `buildDefinition.repository`  | string | `https://github.com/my-org/my-repo`        | The source code repository identifier where the build definition is located.
+| Field                            | Type   | Example                                    | Description 
+|----------------------------------|--------|--------------------------------------------|--------------
+| `buildDefinition.git.repository` | string | `https://github.com/my-org/my-repo`        | Source code repository identifier for the build definition
+| `buildDefinition.git.path`       | string | `.github/workflows/build.yml`              | Path to the build definition file within the commit
+| `buildDefinition.git.branch`     | string | `refs/heads/main`                          | If available, the source code branch containing the build definition at the time of the build
+| `buildDefinition.git.commitId`   | string | `d17077cc10b045ead742c397a4caebe1530efaf3` | Source code version of the build definition that was used
+
+### Internal parameters
+
+| Field                | Description
+|----------------------|--------------
+| `signingRequest.url` | URL of the signing request that created the attestation
 
 ### Provenance generation requirements
 
