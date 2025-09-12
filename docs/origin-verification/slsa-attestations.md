@@ -3,61 +3,82 @@ header: SLSA Build Levels
 layout: resources
 toc: true
 show_toc: 3
-description: Describes the SLSA Build Levels
+description: Describes SignPath SLSA build levels
 ---
 
-# SLSA Attestations by SignPath
+## SLSA attestations by SignPath
 
-This page contains the definitions for the build types and builder IDs used within SLSA provenance files created by SignPath.
+This page contains the definitions for SignPath build types and builders for SLSA provenance files.
 
-## Build Types
+SignPath creates SLSA attestation in three distinct steps:
 
-This section describes the build types for SLSA attestations that are supported by SignPath. They are expressed by the `buildDefinition.buildType` field within the provenance, containing the value `https://signpath.io/slsa/buildtypes/$build-system/v1`, where `$build-system` can have one of the following values:
+1. SignPath Pipeline Integrity gathers and verifies relevant information from a supported _origin_ CI/CD system 
+2. SignPath DeepSign creates SLSA provenance build based on that information (along with other code signing operations)
+3. SignPath Attest signs the provenance 
 
-* `azure-devops`: A build from the [Azure DevOps](/documentation/trusted-build-systems/azure-devops) build system hosted by Microsoft in the cloud (at dev.azure.com).
-* `github`: A build from the [GitHub Actions](/documentation/trusted-build-systems/github) build system hosted by Microsoft in the cloud (at GitHub.com).
+{:.panel.info} 
+> **Attestation trust explained**
+>
+> In order to be able to trust an attestation issued by SignPath, clients need to:
+> 
+> * Verify the signature on the attestation: it must be signed by an official SignPath certificate
+> * Trust SignPath to evaluate the attested properties 
+>   * SignPath evaluates and continuously monitors the services and APIs it uses from supported CI/CD systems. We do extensive research based on official vendor documentation and perform our own tests to ensure that attested properties reflect the actual configuration and build execution. 
+> * Trust all hosted CI/CD system supported by SignPath or verify that the _origin_ system is one that you trust.
+>   * SignPath cannot guarantee that the CI/CD system is actually operated in a safe way and safe from manipulation.
+> 
+> Clients do _not_ need to trust the publisher for these security properties, as they are evaluated on the _control plane_ without relying on the provider's configuration. However, SignPath can only make technical evaluations and enforce technical policies. The quality of the source code (including build scripts) and code reviews is still up to the publisher.
+> 
+> SignPath cannot attest builds from customer-operated CI/CD systems. However, SignPath provides features for customers to self-attest builds from centrally operated CI/CD systems for individual teams.
 
-### Common Parameters
+## Build type and builder identifier
 
-All build types contain the following `buildDefinition` section within the `externalParameters`:
+SignPath identifies build types and builders using the following URIs:
 
-| Field           | Description |
-| -------         | ------------------------------- |
-| `path`          | The path to the build definition file within the commit. |
-| `branch`        | If available, the source code branch containing the build definition at the time of the build. |
-| `commitId`      | The source code version of the build definition that was used. |
-| `repository`    | The source code repository identifier where the build definition is located. |
+| Provenance field | URI format                                                                  | Example
+|------------------|-----------------------------------------------------------------------------|-----------
+| `buildType`      | `https://docs.signpath.io/specs/slsa/buildtypes/$origin/v1`                 | `https://docs.signpath.io/specs/slsa/buildtypes/github/v1`
+| `builder.id`     | `https://signpath.io/slsa/builder/$origin/$buildLevel/slsa-$slsaVersion/v1` | `https://signpath.io/slsa/builder/github/build-l3/slsa-1.1/v1`
 
-#### Example
+The following parameters are used for these URIs:
 
-```
-"externalParameters":
-{
-    "buildDefinition":
-    {
-        "path": ".github/workflows/build.yml",
-        "branch": "refs/heads/main",
-        "commitId": "d17077cc10b045ead742c397a4caebe1530efaf3",
-        "repository": "https://github.com/my-org/my-repo"
-    }
-}
-```
+| Parameter       | Values
+|-----------------|---------------
+| `$origin`       | Origin CI/CD system (see next table)
+| `$buildLevel`   | `build-l1` - `build-l3` for SLSA levels Build L1 - L3
+| `$slsaVersion`  | Version of the SLSA specification, currently ´1.1´ 
 
+| Supported hosted CI/CD systems | `$origin` value  | Supported SLSA Build levels                                                       | Builder ID
+|--------------------------------|------------------|-----------------------------
+| [GitHub Actions]               | `github`         | Build L1 - L3
+| [Azure DevOps]                 | `azure-devops`   | Build L1 - L3
+| [GitLab CI/CD]                 | `gitlab`         | Build L1 - L3
 
-## Builder IDs
+[GitHub Actions]: /trusted-build-systems/github
+[Azure DevOps]: /trusted-build-systems/azure-devops
+[GitLab CI/CD]: /trusted-build-systems/gitlab
 
-This section describes the guarantees made by SignPath for each SLSA Level. They are expressed by the following `runDetails.builder.id` values within the provenance:
+{:.panel.info}
+> **Attestation vs. code signing**
+>
+> Code signing is usually performed by the publisher, using their own certificates and keys. A digital code signature guarantees that an artifact was published by the entity specified in the certificate (authenticity) and was not modified by a third party (integrity), provided code signing was implemented in a secure way. Signatures might carry implicit guarantees about additional security properties, but there is no way to verify those.
+>
+> Attestation provides explicit information about security properties attested by a third party. This article specifies specific SLSA attestations by SignPath for other parties. In order to create trustworthy attestations, SignPath gathers and verifies information on the _control plane_ from _hosted_ CI/CD services like GitHub.com. 
+>
+> SLSA attestations do not contain any explicit publisher information. For Open Source projects, clients can check if source code repository URL and build definition match the expected values of the project. For software from commercial vendors, clients should rely on code signing for publisher verification.
 
-| Builder ID                                              | Details                                        |
-| ----------                                              | -------------------------------------------    |
-| `https://signpath.io/slsa/builder/generic/level1`       | SLSA Level 1, independent of the build system. |
-| `https://signpath.io/slsa/builder/generic/level2`       | SLSA Level 2, independent of the build system. |
-| `https://signpath.io/slsa/builder/$build-system/level3` | SLSA Level 3, where `$build-system` specifies the associated build system. |
+## Build type description
 
-The following `$build-system` values are currently supported:
-* `azure-devops`: A build from the [Azure DevOps](/documentation/trusted-build-systems/azure-devops) build system hosted by Microsoft in the cloud (at dev.azure.com).
-* `github`: A build from the [GitHub Actions](/documentation/trusted-build-systems/github) build system hosted by Microsoft in the cloud (at GitHub.com).
+This section describes the build types for SLSA attestations created by SignPath. They are expressed by the `buildDefinition.buildType` field within the provenance, containing the value `https://signpath.io/slsa/buildtypes/$build-system/v1`, where `$build-system` can have one of the following values:
 
+### External parameters
+
+| Field                         | Type   | Example                                    | Description 
+|-------------------------------|--------|--------------------------------------------|--------------
+| `buildDefinition.path`        | string | `.github/workflows/build.yml`              | The path to the build definition file within the commit.
+| `buildDefinition.branch`      | string | `refs/heads/main`                          | If available, the source code branch containing the build definition at the time of the build.
+| `buildDefinition.commitId`    | string | `d17077cc10b045ead742c397a4caebe1530efaf3` | The source code version of the build definition that was used.
+| `buildDefinition.repository`  | string | `https://github.com/my-org/my-repo`        | The source code repository identifier where the build definition is located.
 
 ### Provenance generation requirements
 
@@ -80,7 +101,7 @@ Guarantee: The provenance was digitally signed.
 {:.quote}
 > Accuracy: The provenance MUST be generated by the control plane and not by a tenant of the build platform.
 
-Guaranteee: SignPath created the provenance. All contents are obtained from a trusted build system on the control plane and cannot be tempered with.
+Guarantee: SignPath created the provenance. All contents are obtained from a trusted build system on the control plane and cannot be tampered with.
 
 #### SLSA Level 3: The provenance is unforgeable
 
@@ -96,7 +117,7 @@ Guarantee: The signing key is stored on SignPath and is not accessible by the en
 {:.quote}
 > All build steps ran using a hosted build platform on shared or dedicated infrastructure, not on an individual’s workstation.
 
-Guarantee: All builds were reported through a [Trusted Build System](/documentation/trusted-build-systems). If the provenance is signed by SignPath, SignPath will guarantee that the build system is hosted in the cloud (e.g. GitHub.com or GitLab.com). Otherwise, the signer of the provenance confirms that they connected a self-managed build system with SignPath.
+Guarantee: All builds were reported through a [Trusted Build System](/trusted-build-systems). If the provenance is signed by SignPath, SignPath will guarantee that the build system is hosted in the cloud (e.g. GitHub.com or GitLab.com). Otherwise, the signer of the provenance confirms that they connected a self-managed build system with SignPath.
 
 #### SLSA Level 3: Isolated builds
 
@@ -118,7 +139,7 @@ Guarantee: If the provenance is signed by SignPath, the build was executed on a 
 
 | Build System   | Guarantee                      |
 | --             | ------------------------------ |
-| Azure DevOps   | The build was executed on a runner from the Microsoft-hosted pools, which provide a clean virtual machien for each build run (see [the official documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/security/misc))
+| Azure DevOps   | The build was executed on a runner from the Microsoft-hosted pools, which provide a clean virtual machine for each build run (see [the official documentation](https://learn.microsoft.com/en-us/azure/devops/pipelines/security/misc))
 | GitHub Actions | The build was executed on a GitHub-hosted runner, each job is run in a fresh instance of the runner image (see [the official documentation](https://docs.github.com/en/actions/how-tos/manage-runners/github-hosted-runners/use-github-hosted-runners))
 
 {:.quote}
