@@ -70,7 +70,7 @@ To sign several files, you may use [wildcards](#wildcards) ...
 
 ~~~ xml
 <zip-file>
-  <pe-file path="myapp.*" max-occurences="unbounded"> 
+  <pe-file path="myapp.*" max-matches="unbounded"> 
     <authenticode-sign/> 
   </pe-file>
 </zip-file>
