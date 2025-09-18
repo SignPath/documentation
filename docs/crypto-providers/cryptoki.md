@@ -119,7 +119,7 @@ _[OpenSSL]_ is a toolkit that provides a range of cryptographic operations, incl
 >
 > Only latest OpenSSL 1.1 and 3.x versions are supported. For Linux, see also the notes in [supported Linux distributions](#supported-linux-distributions).
 
-#### Setup
+### Setup {#openssl-setup}
 
 _OpenSSL_ cannot directly communicate with a Cryptoki library. Instead, the [OpenSC pkcs11 OpenSSL engine](https://github.com/OpenSC/libp11) can be used as adapter between OpenSSL and the SignPath Cryptoki library.
 
@@ -157,8 +157,7 @@ init = 0
 PIN = CONFIG
 ~~~
 
-
-#### Invocation
+### Invocation {#openssl-invocation}
 
 _OpenSSL_ provides a variety of commands that can be used for signing. In this section, a few of them are outlined.
 
@@ -181,7 +180,7 @@ Generally, all commands require the following parameters to work with the SignPa
 | `-inkey`     | `pkcs11:id=$ProjectSlug/$SigningPolicySlug;type=private;pin-value=CONFIG`  | A PKCS #11 URI including _Project_ and _Signing Policy_ slug, see also [Cryptoki parameters](#cryptoki-parameters).
 {: .break-column-2 }
 
-##### openssl dgst
+#### openssl dgst
 
 The _[dgst][openssl-dsgt]_ command calculates digests of files, but can also be used to create and verify signatures.
 
@@ -196,7 +195,7 @@ openssl dgst -engine pkcs11 -keyform engine -sign "pkcs11:id=$ProjectSlug/$Signi
 >
 > The following digests are supported: `sha256`, `sha384`, `sha512`
 
-##### openssl pkeyutl
+#### openssl pkeyutl
 
 The _[pkeyutl][openssl-pkeyutl]_ command performs low-level cryptographic operations, such as signing.
 
@@ -246,7 +245,7 @@ _[osslsigncode]_ is a tool that allows applying Windows Authenticode signatures 
 >
 > Only osslsigncode 2.x or higher is supported. Also see the notes in [supported Linux distributions](#supported-linux-distributions) regarding the supported OpenSSL versions.
 
-#### Setup
+### Setup {#osslsigncode-setup}
 
 `osslsigncode` requires the X.509 certificate corresponding to the SignPath Project and Signing Policy to be downloaded from SignPath and converted to _PEM format_. You can convert the certificate using OpenSSL via the following example.
 
@@ -254,7 +253,7 @@ _[osslsigncode]_ is a tool that allows applying Windows Authenticode signatures 
 openssl x509 -inform DER -in "certificate.cer" -outform PEM -out "certificate.pem"
 ~~~
 
-#### Invocation
+### Invocation {#osslsigncode-invocation}
 
 ~~~ powershell
 osslsigncode sign `
@@ -279,11 +278,11 @@ osslsigncode sign `
 > ./RunScenario.sh -Scenario osslsigncode -OrganizationId "$OrganizationId" -ApiToken "$ApiToken" -ProjectSlug "hash-signing" -SigningPolicySlug "test-signing"
 > ```
 
-## OpenSC pkcs11-tool (Linux)
+## OpenSC pkcs11-tool (Linux) {#opensc-pkcs11-tool}
 
 The [OpenSC](https://github.com/OpenSC/OpenSC) [`pkcs11-tool`](https://linux.die.net/man/1/pkcs11-tool) utility can be used to troubleshoot PKCS #11 modules (e.g. listing all available objects or supported algorithms) but also can be used to read certificates/public keys and to perform signing operations.
 
-#### Setup
+### Setup {#opensc-pkcs11-tool-setup}
 
 {:.panel.info}
 > **`pkcs11-tool` before version 0.23**
@@ -292,7 +291,7 @@ The [OpenSC](https://github.com/OpenSC/OpenSC) [`pkcs11-tool`](https://linux.die
 >
 > _Background: `pkcs11-tool` used to open the Cryptoki session in a read/write mode (see [GitHub issue #2182](https://github.com/OpenSC/OpenSC/issues/2182)) and therefore fails with `PKCS11 function C_OpenSession failed: rv = CKR_TOKEN_WRITE_PROTECTED`. This flag enables compatibility with these earlier versions._
 
-#### Invocation
+### Invocation {#opensc-pkcs11-tool-invocation}
 
 {:.panel.tip}
 > **Tip**
@@ -304,7 +303,7 @@ The [OpenSC](https://github.com/OpenSC/OpenSC) [`pkcs11-tool`](https://linux.die
 > ```
 > 
 
-##### Common parameters
+#### Common parameters
 
 ~~~ powershell
 pkcs11-tool --module $LibSignPathCryptokiPath --pin CONFIG ...
@@ -315,7 +314,7 @@ pkcs11-tool --module $LibSignPathCryptokiPath --pin CONFIG ...
 | `--module`         | `/path/to/libSignPath.Cryptoki.so`      | Path to the SignPath Cryptoki library
 | `--pin`            | `CONFIG` or `$OrganizationId:$ApiToken` | See [PIN parameter](#cryptoki-parameters)
 
-##### Listing of the available PKCS #11 objects
+#### Listing available PKCS #11 objects
 
 The following command lists available objects, which corresponds to the list of signing policies for which the authenticated user has _Submitter_ permissions.
 
@@ -323,7 +322,7 @@ The following command lists available objects, which corresponds to the list of 
 pkcs11-tool --module $LibSignPathCryptokiPath --pin CONFIG --list-objects
 ~~~
 
-##### Signing operation
+#### Signing operation
 
 The following sample call shows an RSA signing operation using PSS padding and SHA-256.
 
@@ -344,7 +343,7 @@ pkcs11-tool --module $LibSignPathCryptokiPath --pin CONFIG `
 
 The [`jarsigner`](https://docs.oracle.com/en/java/javase/17/docs/specs/man/jarsigner.html) command signs and verifies Java archives (e.g. JAR, WAR, EAR). It is included with the Java Development Kit (JDK).
 
-#### Setup
+### Setup {#jarsigner-setup}
 
 1. Configure the SunPKCS11 Provider
    * OpenJDK: the provider is configured automatically
@@ -359,7 +358,7 @@ library=<path>\SignPath.Cryptoki.dll
 slot=1
 ~~~
 
-#### Invocation
+#### Invocation {#jarsigner-invocation}
 
 {:.panel.tip}
 > **Tip**
