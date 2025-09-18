@@ -33,16 +33,18 @@ This section provides general information about using the SignPath Cryptoki libr
 | RedHat       | 8 (latest minor)   |
 | RedHat       | 9 (latest minor)   |
 
+{:.panel.info}
 > **Dependency on OpenSSL and `ca-certificates`**
 >
-> The CryptoProviders internally use OpenSSL to perform HTTPS requests. So both, the `openssl`, as well as the `ca-certificates` package, which contains the HTTPS/TLS root certificates must be present on your system.
+> The Crypto Providers use OpenSSL internally to perform HTTPS requests. So the packages `openssl` and `ca-certificates` (which contains the HTTPS/TLS root certificates) must be present on your system.
 >
-> In case you see log messages like `Error in SSL handshake`, these dependencies may be missing. To go sure, you can test connectivity via the following command.
+> If you see log messages like `Error in SSL handshake`, these dependencies may be missing. You can test connectivity via the following command:
+> 
 > ```bash
 > curl https://app.signpath.io/Api/healthz
 > ```
-{:.panel.info}
 
+{:.panel.warning}
 > **OpenSSL 3.0.0 - 3.0.8 incompatibility**
 >
 > Distributions with an OpenSSL version between 3.0.0 and 3.0.8 (including) don't support the the [OpenSSL](#openssl) and [osslsigncode](#osslsigncode) scenarios.
@@ -50,7 +52,6 @@ This section provides general information about using the SignPath Cryptoki libr
 > The issue results in _"http_exception occurred (error code= generic:168296454): Error in SSL handshake"_ errors.
 >
 > You need to replace the system's OpenSSL version with >= 3.0.9 or use an isolated OpenSSL installation.
-{:.panel.warning}
 
 ### Installation
 
@@ -124,12 +125,12 @@ _OpenSSL_ cannot directly communicate with a Cryptoki library. Instead, the [Ope
 
 **Windows:** Download `libp11-<version>-x64.zip` from [OpenSC libp11 Releases](https://github.com/OpenSC/libp11/releases) and copy-deploy `pkcs11.dll` (x64 version).
 
-* For **OpenSSL 1.1**, the latest known compatible version is `0.4.11`. Later versions of `libp11` lead to _"DSO support routines:win32_load:could not load the shared library"_ errors.
+* For **OpenSSL 1.1**, the latest known compatible version is `0.4.11`. Later versions of `libp11` cause _"DSO support routines:win32_load:could not load the shared library"_ errors.
 * For **OpenSSL 3.x** use the _latest_ `libp11` version (at _least_ version `0.4.12`).
 
 **Linux:** Install the OpenSC pkcs11 engine via your package manager (e.g. `apt-get install libengine-pkcs11-openssl` on Debian-based or `dnf install openssl-pkcs11` on RedHat-based distros).
 
-Setup the following variables:
+Set the following variables:
 
 | Environment variable | Value 
 |----------------------|--------------------------------------------------------
