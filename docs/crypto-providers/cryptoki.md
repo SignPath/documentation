@@ -35,7 +35,7 @@ This section provides general information about using the SignPath Cryptoki libr
 
 > **Dependency on OpenSSL and `ca-certificates`**
 >
-> The CryptoProviders internally use OpenSSL to perform HTTPS requests. So both, the OpenSSL libraries as well as the `ca-certificates` package, which contains the HTTPS/TLS root certificates must be present on your system.
+> The CryptoProviders internally use OpenSSL to perform HTTPS requests. So both, the `openssl`, as well as the `ca-certificates` package, which contains the HTTPS/TLS root certificates must be present on your system.
 >
 > In case you see log messages like `Error in SSL handshake`, these dependencies may be missing. To go sure, you can test connectivity via the following command.
 > ```bash
