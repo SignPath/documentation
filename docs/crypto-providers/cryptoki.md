@@ -121,20 +121,24 @@ _[OpenSSL]_ is a toolkit that provides a range of cryptographic operations, incl
 
 ### Setup {#openssl-setup}
 
-_OpenSSL_ cannot directly communicate with a Cryptoki library. Instead, the [OpenSC pkcs11 OpenSSL engine](https://github.com/OpenSC/libp11) can be used as adapter between OpenSSL and the SignPath Cryptoki library.
+#### Install the `libp11` OpenSSL engine
 
-**Windows:** Download `libp11-<version>-x64.zip` from [OpenSC libp11 Releases](https://github.com/OpenSC/libp11/releases) and copy-deploy `pkcs11.dll` (x64 version).
+_OpenSSL_ cannot directly communicate with a Cryptoki library. Instead, the [OpenSC pkcs11 OpenSSL engine (`libp11`)](https://github.com/OpenSC/libp11) can be used as adapter between OpenSSL and the SignPath Cryptoki library.
+
+**Windows:** Download `libp11-<version>-x64.zip` from [OpenSC `libp11` Releases](https://github.com/OpenSC/libp11/releases) and copy-deploy `pkcs11.dll` (x64 version).
 
 * For **OpenSSL 1.1**, the latest known compatible version is `0.4.11`. Later versions of `libp11` cause _"DSO support routines:win32_load:could not load the shared library"_ errors.
 * For **OpenSSL 3.x** use the _latest_ `libp11` version (at _least_ version `0.4.12`).
 
 **Linux:** Install the OpenSC pkcs11 engine via your package manager (e.g. `apt-get install libengine-pkcs11-openssl` on Debian-based or `dnf install openssl-pkcs11` on RedHat-based distros).
 
+#### Configure OpenSSL
+
 Set the following variables:
 
 | Environment variable | Value 
 |----------------------|--------------------------------------------------------
-| `OPENSSL_ENGINES`    | Path to the **directory** which contains the `libp11` library `pkcs11.dll`/`libpkcs11.so`. Only necessary when the library hasn't been installed to the OpenSSL default dir (see `openssl info -enginesdir`), which is the case on Linux when installing it via your package manager.
+| `OPENSSL_ENGINES`    | Path to the **directory** which contains the `libp11` library `pkcs11.dll`/`libpkcs11.so`. Only necessary when the library hasn't been installed to the OpenSSL default dir (see `openssl info -enginesdir`). So on Linux when installing `libp11` via your package manager, you can skip setting `OPENSSL_ENGINES`.
 | `PKCS11_MODULE_PATH` | Full **file** path to `SignPath.Cryptoki.dll`/`libSignPath.Cryptoki.so`
 
 An _alternative_ to using the `OPENSSL_ENGINES`/`PKCS11_MODULE_PATH` env variables is to use create a `openssl-signpath.cnf` file as follows and set the `OPENSSL_CONF` env to point to the configuration file.
@@ -150,7 +154,7 @@ engines = engines_section
 pkcs11 = pkcs11_section
 
 [pkcs11_section]
-# dynamic_path = C:\\path\\to\\pkcs11.dll # only necessary when the library hasn't been installed to the OpenSSL default dir (see `openssl info -enginesdir`), which is the case on Linux when installing it via your package manager
+# dynamic_path = C:\\path\\to\\pkcs11.dll # necessary when the library hasn't been installed to the OpenSSL default dir (see `openssl info -enginesdir`). So on Linux when installing `libp11` via your package manager, you can skip setting `dynamic_path`.
 MODULE_PATH = C:\\path\\to\\SignPath.Cryptoki.dll # Linux: /path/to/libSignPath.Cryptoki.so
 default_algorithms = ALL
 init = 0
