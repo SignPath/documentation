@@ -147,6 +147,7 @@ Set the following variables:
 $env:OPENSSL_ENGINES = "C:\path\to\libp11\install_dir"
 $env:PKCS11_MODULE_PATH = "C:\path\to\SignPath.Cryptoki.dll"
 
+# sample signing operation:
 openssl dgst -engine pkcs11 -keyform engine -sign "pkcs11:id=$ProjectSlug/$SigningPolicySlug;type=private;pin-value=CONFIG" -sha256 -out "artifact.sig" "artifact.bin"
 ~~~
 
@@ -155,6 +156,7 @@ openssl dgst -engine pkcs11 -keyform engine -sign "pkcs11:id=$ProjectSlug/$Signi
 ~~~ bash
 export PKCS11_MODULE_PATH="/path/to/libSignPath.Cryptoki.so"
 
+# sample signing operation:
 openssl dgst -engine pkcs11 -keyform engine -sign "pkcs11:id=$ProjectSlug/$SigningPolicySlug;type=private;pin-value=CONFIG" -sha256 -out "artifact.sig" "artifact.bin"
 ~~~
 
