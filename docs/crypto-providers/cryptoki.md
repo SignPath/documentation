@@ -144,7 +144,7 @@ Set the following variables:
 **Windows example:**
 
 ~~~ powershell
-$env:OPENSSL_ENGINES = "C:\path\to\libp11\install_dir"
+$env:OPENSSL_ENGINES = "C:\path\to\libp11\install_dir" # within this dir, the `pkcs11.dll` has to reside
 $env:PKCS11_MODULE_PATH = "C:\path\to\SignPath.Cryptoki.dll"
 
 # sample signing operation:
