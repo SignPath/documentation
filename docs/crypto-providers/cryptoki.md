@@ -141,6 +141,25 @@ Set the following variables:
 | `OPENSSL_ENGINES`    | Path to the **directory** which contains the `libp11` library `pkcs11.dll`/`libpkcs11.so`. Only necessary when the library hasn't been installed to the OpenSSL default dir (see `openssl info -enginesdir`). So on Linux when installing `libp11` via your package manager, you can skip setting `OPENSSL_ENGINES`.
 | `PKCS11_MODULE_PATH` | Full **file** path to `SignPath.Cryptoki.dll`/`libSignPath.Cryptoki.so`
 
+**Windows example:**
+
+~~~ powershell
+$env:OPENSSL_ENGINES = "C:\path\to\libp11\install_dir"
+$env:PKCS11_MODULE_PATH = "C:\path\to\SignPath.Cryptoki.dll"
+
+openssl dgst -engine pkcs11 -keyform engine -sign "pkcs11:id=$ProjectSlug/$SigningPolicySlug;type=private;pin-value=CONFIG" -sha256 -out "artifact.sig" "artifact.bin"
+~~~
+
+**Linux example:**
+
+~~~ bash
+export PKCS11_MODULE_PATH="/path/to/libSignPath.Cryptoki.so"
+
+openssl dgst -engine pkcs11 -keyform engine -sign "pkcs11:id=$ProjectSlug/$SigningPolicySlug;type=private;pin-value=CONFIG" -sha256 -out "artifact.sig" "artifact.bin"
+~~~
+
+#### Alternative OpenSSL configuration via `OPENSSL_CONF`
+
 An _alternative_ to using the `OPENSSL_ENGINES`/`PKCS11_MODULE_PATH` env variables is to use create a `openssl-signpath.cnf` file as follows and set the `OPENSSL_CONF` env to point to the configuration file.
 
 ~~~ ini
