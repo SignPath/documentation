@@ -10,7 +10,7 @@ description: Creating GPG signatures with SignPath
 
 [GNU Privacy Guard](https://gnupg.org/), also known as GPG or GnuPG, is an Open Source implementation of the OpenPGP standard. This section provides information about using GPG with SignPath, as well as some code signing tools that build on GPG.
 
-## Terminology
+### Terminology
 
 GPG uses various terms for certificates. We use the term **_GPG key_** in our GPG documentation, but keep in mind that other parts of the SignPath documentation will use the general term _certificate_. See [Managing Certificates](/managing-certificates#certificate-types) for more information.
 
@@ -48,6 +48,8 @@ This function sets up GPG using the specified parameters:
 See [SignPath Crypto Providers](/crypto-providers/#crypto-provider-configuration) for additional configuration options including logging.
 
 ## Signing code with GPG
+
+### Common signing tools
 
 The [Linux samples] contain complete example scripts (including all preparation steps) to sign and verify files using the following formats and tools:
 
