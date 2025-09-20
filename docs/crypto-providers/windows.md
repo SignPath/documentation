@@ -8,9 +8,11 @@ description: SignPath Windows CSP and KSP Crypto Providers
 
 ## Overview
 
-Signing tools secifically designed for Windows typicall use CNG KSP or CAPI CSP providers. Install and use the SignPath KSP and CSP providers to use this tools with SignPath.
+Signing tools secifically designed for Windows typically use CNG KSP or CAPI CSP providers. Install and use the SignPath KSP and CSP providers to use this tools with SignPath.
 
-## Installation
+## Setup
+
+### Installation
 
 To install the Windows CNG KSP and CAPI CSP providers,
 
@@ -87,35 +89,9 @@ msiexec /x SignPathCryptoProviders-$Version.msi /qn /L* uninstall.log | Out-Host
 
 See [SignPath Crypto Providers](/crypto-providers/#crypto-provider-configuration) for general configuration options.
 
-## Using KSP/CSP parameters of signing tools
+## Signing code
 
-Additionally to the general [Crypto Provider configuration](/crypto-providers#crypto-provider-configuration), specify the following values using the parameters provided by your signing tool:
-
-| Parameter             | Value                                | Description
-|-----------------------|--------------------------------------|---------------------------------------
-| Crypto Provider       | `SignPathKSP` or `SignPathCSP`       | SignPath KSP (preferred) or CSP
-| Key container name    | `$ProjectSlug/$SigningPolicySlug`    | SignPath _Project_ and _Signing Policy_ slugs, separated by a forward slash 
-| Certificate file      | Path to the x.509 certificate file   | Download the respective certificate file from SignPath
-
-{:.panel.info}
-> **Use _Project_ and _Signing Policy_ slugs to speficy a key**
->
-> Identify a specific _Signing Policy_ by specifying _Project_ and _Signing Policy_ slugs. The SignPath KSP/CSP will select that policy's certificate.
-
-## Error handling
-
-The following table shows the KSP `HRESULT` result codes for different error situations when calling the SignPath REST API.
-
-| Situation                                                                                                | error code (KSP result code or CSP `GetLastError()` code)
-|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------
-| Transient errors like HTTP timeouts or 503 (Service Unavailable) which still occur after the last retry  | `NTE_DEVICE_NOT_READY` ("The device that is required by this cryptographic provider is not ready for use.") for errors without an HTTP status code. Otherwise, HTTP status code as an HRESULT in the `FACILITY_ITF`, e.g. `0x800401F7` for HTTP 503
-| Non-transient service errors (e.g. 500 Internal Server Error)                                            | HTTP status code as an HRESULT in the `FACILITY_ITF`, e.g. `0x800401F4` for HTTP 500
-| User errors detected by service (4xx returned)                                                           | HTTP status code as an HRESULT in the `FACILITY_ITF`, e.g. `0x80040190` for HTTP 400
-| Other unspecified errors (fall back)                                                                     | `NTE_FAIL` ("An internal error occurred.")
-
-The CSP error code has to be retrieved via [`GetLastError()`](https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror).
-
-## SignTool.exe {#signtool}
+### SignTool.exe {#signtool}
 
 _[SignTool.exe]_ is a command line tool by Microsoft. _SignTool.exe_ can use both the SignPath CSP and the SignPath KSP. We recommend using the SignPath KSP whenever possible.
 
@@ -150,3 +126,32 @@ signtool.exe sign /csp SignPathKSP /kc "$ProjectSlug/$SigningPolicySlug" /fd SHA
 > When using SignTool.exe (or any other signing tool) directly, you are responsible for correct time stamping. See [Timestamps](/crypto-providers#timestamps)
 
 [SignTool.exe]: https://docs.microsoft.com/en-us/dotnet/framework/tools/signtool-exe
+
+### Using other signing tools {#ksp-parameters}
+
+In addition to the general [Crypto Provider configuration](/crypto-providers#crypto-provider-configuration), specify the following values using the parameters provided by your signing tool:
+
+| Parameter             | Value                                | Description
+|-----------------------|--------------------------------------|---------------------------------------
+| Crypto Provider       | `SignPathKSP` or `SignPathCSP`       | SignPath KSP (preferred) or CSP
+| Key container name    | `$ProjectSlug/$SigningPolicySlug`    | SignPath _Project_ and _Signing Policy_ slugs, separated by a forward slash 
+| Certificate file      | Path to the x.509 certificate file   | Download the respective certificate file from SignPath
+
+{:.panel.info}
+> **Use _Project_ and _Signing Policy_ slugs to speficy a key**
+>
+> Identify a specific _Signing Policy_ by specifying _Project_ and _Signing Policy_ slugs. The SignPath KSP/CSP will select that policy's certificate.
+
+### Error handling
+
+The following table shows the KSP `HRESULT` result codes for different error situations when calling the SignPath REST API.
+
+| Situation                                                                                                | error code (KSP result code or CSP `GetLastError()` code)
+|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------
+| Transient errors like HTTP timeouts or 503 (Service Unavailable) which still occur after the last retry  | `NTE_DEVICE_NOT_READY` ("The device that is required by this cryptographic provider is not ready for use.") for errors without an HTTP status code. Otherwise, HTTP status code as an HRESULT in the `FACILITY_ITF`, e.g. `0x800401F7` for HTTP 503
+| Non-transient service errors (e.g. 500 Internal Server Error)                                            | HTTP status code as an HRESULT in the `FACILITY_ITF`, e.g. `0x800401F4` for HTTP 500
+| User errors detected by service (4xx returned)                                                           | HTTP status code as an HRESULT in the `FACILITY_ITF`, e.g. `0x80040190` for HTTP 400
+| Other unspecified errors (fall back)                                                                     | `NTE_FAIL` ("An internal error occurred.")
+
+The CSP error code has to be retrieved via [`GetLastError()`](https://learn.microsoft.com/en-us/windows/win32/api/errhandlingapi/nf-errhandlingapi-getlasterror).
+
