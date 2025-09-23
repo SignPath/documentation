@@ -48,7 +48,7 @@ The following parameters are used for these URIs:
 | `$buildLevel`   | `build-l1` - `build-l3` for SLSA levels Build L1 - L3
 | `$slsaVersion`  | Version of the SLSA specification, currently ´1.1´ 
 
-| Supported hosted CI/CD systems | `$origin` value  | Supported SLSA Build levels                                                       | Builder ID
+| Supported hosted CI/CD systems | `$origin` value  | Supported SLSA Build levels 
 |--------------------------------|------------------|-----------------------------
 | [GitHub Actions]               | `github`         | Build L1 - L3
 | [Azure DevOps]                 | `azure-devops`   | Build L1 - L3
