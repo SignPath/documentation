@@ -46,7 +46,7 @@ The following parameters are used for these URIs:
 |-----------------|---------------
 | `$origin`       | Origin CI/CD system (see next table)
 | `$buildLevel`   | `build-l1` - `build-l3` for SLSA levels Build L1 - L3
-| `$slsaVersion`  | Version of the SLSA specification, currently ´1.1´ 
+| `$slsaVersion`  | Version of the SLSA specification, currently ´1.1´
 
 | Supported hosted CI/CD systems | `$origin` value  | Supported SLSA Build levels 
 |--------------------------------|------------------|-----------------------------
