@@ -35,10 +35,10 @@ SignPath creates SLSA attestation in three distinct steps:
 
 SignPath identifies build types and builders using the following URIs:
 
-| Provenance field | URI format                                                                  | Example
-|------------------|-----------------------------------------------------------------------------|-----------
-| `buildType`      | `https://docs.signpath.io/specs/slsa/buildtypes/$origin/v1`                 | `https://docs.signpath.io/specs/slsa/buildtypes/github/v1`
-| `builder.id`     | `https://signpath.io/slsa/builder/$origin/$buildLevel/slsa-$slsaVersion/v1` | `https://signpath.io/slsa/builder/github/build-l3/slsa-1.1/v1`
+| Provenance field | URI format                                                                             | Example
+|------------------|----------------------------------------------------------------------------------------|-----------
+| `buildType`      | `https://docs.signpath.io/specs/slsa/buildtypes/$origin/v1`                            | `https://docs.signpath.io/specs/slsa/buildtypes/github/v1`
+| `builder.id`     | `https://docs.signpath.io/specs/slsa/builder/$origin/$buildLevel/slsa-$slsaVersion/v1` | `https://docs.signpath.io/specs/slsa/builder/github/build-l3/slsa-1.1/v1`
 
 The following parameters are used for these URIs:
 
