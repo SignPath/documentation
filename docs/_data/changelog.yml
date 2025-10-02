@@ -1,3 +1,28 @@
+- date: '2025-10-07'
+  updates:
+    application:
+      version: 1.197.0
+      improvements:
+        - text: |-
+            Improved error display on signing request details page for failed custom signer invocations.
+          issues: [SIGN-8035]
+      bug_fixes:
+        - text: |-
+            Fixed broken re-upload of X.509 certificates with ECDSA certificates.
+          issues: [SIGN-8009]
+        - text: |-
+            Fixed error handling for missing `output-file-name` attributes on `<create-gpg-signature>` or `<create-raw-signature>` directives.
+          issues: [SIGN-8056]
+    self_hosted_installations:
+      version: 1.197.0
+      breaking_changes:
+        - text: |-
+            New mandatory configuration value in `signpath-application` chart: `appSettings.shared.apiUrlOptions.apiBaseUrl`.
+          issues: [SIGN-8025]
+      improvements:
+        - text: |-
+            Operator API: changed `POST /Api/v1-pre/Organizations` to create an "initial" CI user, which then can be used to create further objects via the REST API.
+          issues: [SIGN-8025, SIGN-8050]
 - date: '2025-09-09'
   updates:
     application:
@@ -29,8 +54,7 @@
       improvements:
         - text: |-
             Changed the links in the cmdlet descriptions to point to the new [docs.signpath.io](https://docs.signpath.io) website.
-          issues:
-            [SIGN-6924, SIGN-7981]
+          issues: [SIGN-6924, SIGN-7981]
 - date: '2025-08-26'
   updates:
     application:
