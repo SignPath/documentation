@@ -168,7 +168,7 @@ The `ApiToken` value can contain the API token in one of the following variants:
 |-------------------------------------------------------|-----------------------------
 | Unencrpyted token                                     | `AIk/65sl23lA1nVV/pgSqk96SvHFsSw3xitmp5Qhr+F/`
 | DPAPI-encrypted token (Windows only)                  | `encrypted:AQAAANCMnd8BFdERjHoAwE/Cl+sBAAA...`
-| Registry path to DPAPI-encrypted token (Windows only) | `registry:HKEY_CURRENT_USER\\SOFTWARE\\SignPath\\MyEncryptedApiToken`
+| Registry path to DPAPI-encrypted token (Windows only) | `registry:HKEY_CURRENT_USER\SOFTWARE\SignPath\MyEncryptedApiToken`
 {: .break-column-2}
 
 
