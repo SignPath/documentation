@@ -21,7 +21,7 @@
           issues: [SIGN-8025]
       improvements:
         - text: |-
-            Operator API: changed `POST /Api/v1-pre/Organizations` to create an "initial" CI user, which then can be used to create further objects via the REST API.
+            Operator API: changed `POST /Api/v1-pre/Organizations` to create an _initial_ CI user, which then can be used for additional setup steps via the REST API.
           issues: [SIGN-8025, SIGN-8050]
 - date: '2025-09-09'
   updates:
