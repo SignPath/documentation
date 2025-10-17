@@ -21,7 +21,7 @@
       breaking_changes:
       improvements:
         - text: |-
-            Dropped the fourth part (internal build number) from container image version numbers (e.g. image tag for this release is now simply `1.198.1`). In case you perform image mirroring you may need to update your mirror scripts.
+            Dropped the fourth part (internal build number) from container image version numbers (e.g. image tag for this release is now simply `1.198.1`). In case you perform image mirroring you may need to update your mirroring scripts.
           issues: [SIGN-7853]
         - text: |-
             Improve self-healing/error recovery on temporary SQL connection outages within SignService.
