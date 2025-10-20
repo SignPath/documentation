@@ -35,7 +35,7 @@ The following Crypto Providers are available for SignPath:
 [PKCS #11]: https://docs.oasis-open.org/pkcs11/pkcs11-base/v2.40/os/pkcs11-base-v2.40-os.html
 [CNG]: https://docs.microsoft.com/en-us/windows/win32/seccng/key-storage-and-retrieval
 [CAPI]: https://docs.microsoft.com/en-us/windows/win32/seccrypto/cryptographic-service-providers
-[CTK extension]: https://developer.apple.com/cryptotokenkit/
+[CTK extension]: https://developer.apple.com/documentation/cryptotokenkit/
 
 ### Signing flow {#flow}
 
