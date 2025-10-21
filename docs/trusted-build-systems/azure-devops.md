@@ -60,7 +60,7 @@ steps:
     PathtoPublish: '$(Build.SourcesDirectory)/your-artifact'
     ArtifactName: 'unsigned-artifact'
 
-- task: SubmitSigningRequest@1
+- task: SubmitSigningRequest@4
   inputs:
     serviceConnectionName: 'my-signpath-service-connection'
     projectSlug: '<SignPath project slug>'
@@ -97,5 +97,4 @@ steps:
 The action supports the following output parameters:
 - `SigningRequestId`: The id of the newly created signing request. Available to subsequent tasks as an environment variable `<TASKNAME>_SIGNINGREQUESTID`.
 - `SigningRequestWebUrl`: The url of the signing request in SignPath. Available to subsequent tasks as an environment variable `<TASKNAME>_SIGNINGREQUESTWEBURL`.
-- `SignPathApiUrl`: The base API url of the SignPath API. Available to subsequent tasks as an environment variable `<TASKNAME>_SIGNPATHAPIURL`.
-- `SignedArtifactDownloadUrl`: The url of the signed artifact in SignPath. Available to subsequent tasks as an environment variable `<TASKNAME>_SIGNEDARTIFACTDOWNLOADURL`.
+- `SignedArtifactDownloadUrl`: The download url of the signed artifact. Available to subsequent tasks as an environment variable `<TASKNAME>_SIGNEDARTIFACTDOWNLOADURL`.

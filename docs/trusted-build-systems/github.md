@@ -43,7 +43,7 @@ steps:
     path: path/to/your/artifact
 
 - id: optional_step_id
-  uses: signpath/github-action-submit-signing-request@v1
+  uses: signpath/github-action-submit-signing-request@v2
   with:
     api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
     organization-id: '<SignPath organization id>'
@@ -89,8 +89,7 @@ steps:
 The action supports the following output parameters:
 - `signing-request-id`: The id of the newly created signing request
 - `signing-request-web-url`: The url of the signing request in SignPath
-- `signpath-api-url`: The base API url of the SignPath API
-- `signed-artifact-download-url`: The url of the signed artifact in SignPath
+- `signed-artifact-download-url`: The download url of the signed artifact
 
 ## Define policies for source code and builds
 
