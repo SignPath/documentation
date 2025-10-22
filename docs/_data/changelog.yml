@@ -4,9 +4,8 @@
       version: 1.198.1
       improvements:
         - text: |-
-            REST API: new routes for adding predefined trusted build systems and trusted build system links on a project:
+            REST API: new route for adding predefined trusted build systems:
             * `POST /v1/{organizationId}/TrustedBuildSystems/AddPredefined`
-            * `POST /v1/{organizationId}/Projects/{projectSlug}/LinkedTrustedBuildSystems`
             * For details see [API definition](https://app.signpath.io/Api/swagger) of the new routes.
           issues: [SIGN-7970]
       bug_fixes:
