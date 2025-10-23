@@ -4,16 +4,14 @@
       version: 1.198.1
       improvements:
         - text: |-
-            REST API: new route for adding predefined trusted build systems:
-            * `POST /v1/{organizationId}/TrustedBuildSystems/AddPredefined`
-            * For details see [API definition](https://app.signpath.io/Api/swagger) of the new routes.
+            REST API: new route `POST /v1/{organizationId}/TrustedBuildSystems/AddPredefined` for adding predefined trusted build systems. See [API definition](https://app.signpath.io/Api/swagger) for details.
           issues: [SIGN-7970]
       bug_fixes:
         - text: |-
-            Fixed in deep-signing: error reporting when trying to sign Authenticode or Office Macro files with very long paths (previously just displayed a generic "processing error" message).
+            Fixed: trying to sign Authenticode or Office Macro files with very long paths resulted in a generic "processing error" message.
           issues: [SIGN-7996]
         - text: |-
-            Fixed in REST API: error handling of user-defined parameters with incorrect syntax in signing request submission (previously produced status 500 responses).
+            Fixed in REST API: multipart/form-data requests with invalid field names resulted in status 500 responses (e.g. user-defined parameters in signing request submission).
           issues: [SIGN-8061]
     self_hosted_installations:
       version: 1.198.1
@@ -23,7 +21,7 @@
             Dropped the fourth part (internal build number) from container image version numbers (e.g. image tag for this release is now simply `1.198.1`). In case you perform image mirroring you may need to update your mirroring scripts.
           issues: [SIGN-7853]
         - text: |-
-            Improve self-healing/error recovery on temporary SQL connection outages within SignService.
+            Improved self-healing/error recovery on temporary SQL connection outages in SignService.
           issues: [SIGN-7928]
 - date: '2025-10-07'
   updates:
