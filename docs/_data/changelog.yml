@@ -2,6 +2,10 @@
   updates:
     application:
       version: 1.198.1
+      breaking_changes:
+        - text: |-
+            [`<create-raw-signature>`](/artifact-configuration/reference#create-raw-signature): dropped the legacy `file-name` attribute (has been renamed to `output-file-name` in version 1.179).
+          issues: [SIGN-8063]
       improvements:
         - text: |-
             REST API: new route `POST /v1/{organizationId}/TrustedBuildSystems/AddPredefined` for adding predefined trusted build systems. See [API definition](https://app.signpath.io/Api/swagger) for details.
