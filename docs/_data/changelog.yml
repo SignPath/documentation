@@ -3,7 +3,7 @@
     azure_devops_extension:
       version: 4.1.0
       improvements:
-        - text: The signed artifact is now downloaded via the connector. The build agent does not need direct network access to SignPath.
+        - text: All requests including signed artifact download are now performed via the connector service. The build agent no longer needs direct network access to SignPath.
           issues: [SIGN-8057]
     github_actions_action:
       version: 2.0.0
@@ -11,7 +11,7 @@
         - text: The `signpath-api-url` output parameter has been removed.
           issues: [SIGN-8057]
       improvements:
-        - text: The signed artifact is now downloaded via the connector. The build agent does not need direct network access to SignPath.
+        - text: All requests including signed artifact download are now performed via the connector service. The build agent no longer needs direct network access to SignPath.
           issues: [SIGN-8057]
 - date: '2025-10-22'
   updates:
@@ -28,8 +28,7 @@
     teamcity_connector:
       version: 0.6.1
       improvements:
-        - text: |
-            [Personal Builds](https://www.jetbrains.com/help/teamcity/personal-build.html) are now prohibited. Personal builds include changes that are not yet committed to version control.
+        - text: Signing requests from [personal builds](https://www.jetbrains.com/help/teamcity/personal-build.html) are now rejected.
           issues: [SIGN-8028]
         - text: Improved error messages for operational errors.
           issues: [SIGN-8003]

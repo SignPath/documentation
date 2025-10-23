@@ -173,7 +173,7 @@ See [Resubmit an existing signing request](/signing-code#resubmit) for more info
 | URL                         | `/SigningRequests/Resubmit`
 | Method                      | `POST`
 | Encoding                    | `multipart/form-data`
-| `OriginalSigningRequestId`  | The ID of the signing request which you want to resubmit
+| `OriginalSigningRequestId`  | ID of the signing request which you want to resubmit
 | `SigningPolicySlug`         | Signing policy for which you want to create the signing request
 | `Description`               | Optional: description for your signing request (e.g. version number)
 
