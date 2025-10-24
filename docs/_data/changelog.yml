@@ -4,15 +4,15 @@
       version: 4.1.0
       improvements:
         - text: All requests including signed artifact download are now performed via the connector service. The build agent no longer needs direct network access to SignPath.
-          issues: [SIGN-8057]
+          issues: [SIGN-8075]
     github_actions_action:
       version: 2.0.0
       breaking_changes:
         - text: The `signpath-api-url` output parameter has been removed.
-          issues: [SIGN-8057]
+          issues: [SIGN-8075]
       improvements:
         - text: All requests including signed artifact download are now performed via the connector service. The build agent no longer needs direct network access to SignPath.
-          issues: [SIGN-8057]
+          issues: [SIGN-8075]
 - date: '2025-10-22'
   updates:
     azure_devops_connector:
