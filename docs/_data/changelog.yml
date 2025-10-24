@@ -1,5 +1,32 @@
 - date: '2025-10-23'
   updates:
+    application:
+      version: 1.198.1
+      breaking_changes:
+        - text: |-
+            [`<create-raw-signature>`](/artifact-configuration/reference#create-raw-signature): dropped the legacy `file-name` attribute (has been renamed to `output-file-name` in version 1.179).
+          issues: [SIGN-8063]
+      improvements:
+        - text: |-
+            REST API: new route `POST /v1/{organizationId}/TrustedBuildSystems/AddPredefined` for adding predefined trusted build systems. See [API definition](https://app.signpath.io/Api/swagger) for details.
+          issues: [SIGN-7970]
+      bug_fixes:
+        - text: |-
+            Fixed: trying to sign Authenticode or Office Macro files with very long paths resulted in a generic "processing error" message.
+          issues: [SIGN-7996]
+        - text: |-
+            Fixed in REST API: multipart/form-data requests with invalid field names resulted in status 500 responses (e.g. user-defined parameters in signing request submission).
+          issues: [SIGN-8061]
+    self_hosted_installations:
+      version: 1.198.1
+      breaking_changes:
+      improvements:
+        - text: |-
+            Dropped the fourth part (internal build number) from container image version numbers (e.g. image tag for this release is now simply `1.198.1`). In case you perform image mirroring you may need to update your mirroring scripts.
+          issues: [SIGN-7853]
+        - text: |-
+            Improved self-healing/error recovery on temporary SQL connection outages in SignService.
+          issues: [SIGN-7928]
     azure_devops_extension:
       version: 4.1.0
       improvements:
