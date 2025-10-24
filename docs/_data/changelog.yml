@@ -27,6 +27,45 @@
         - text: |-
             Improved self-healing/error recovery on temporary SQL connection outages in SignService.
           issues: [SIGN-7928]
+    azure_devops_extension:
+      version: 4.1.0
+      improvements:
+        - text: All requests including signed artifact download are now performed via the connector service. The build agent no longer needs direct network access to SignPath.
+          issues: [SIGN-8075]
+    github_actions_action:
+      version: 2.0.0
+      breaking_changes:
+        - text: The `signpath-api-url` output parameter has been removed.
+          issues: [SIGN-8075]
+      improvements:
+        - text: All requests including signed artifact download are now performed via the connector service. The build agent no longer needs direct network access to SignPath.
+          issues: [SIGN-8075]
+- date: '2025-10-22'
+  updates:
+    azure_devops_connector:
+      version: 0.7.1
+      improvements:
+        - text: Cleaned up log levels
+          issues: [SIGN-8098]
+    github_connector:
+      version: 1.11.1
+      improvements:
+        - text: Cleaned up log levels
+          issues: [SIGN-8098]
+    teamcity_connector:
+      version: 0.6.1
+      improvements:
+        - text: Signing requests from [personal builds](https://www.jetbrains.com/help/teamcity/personal-build.html) are now rejected.
+          issues: [SIGN-8028]
+        - text: Improved error messages for operational errors.
+          issues: [SIGN-8003]
+        - text: Cleaned up log levels
+          issues: [SIGN-8098]
+    teamcity_plugin:
+      version: 0.4.0
+      improvements:
+        - text: Improved error logging
+          issues: [SIGN-8028]
 - date: '2025-10-07'
   updates:
     application:

@@ -43,7 +43,7 @@ steps:
     path: path/to/your/artifact
 
 - id: optional_step_id
-  uses: signpath/github-action-submit-signing-request@v1
+  uses: signpath/github-action-submit-signing-request@v2
   with:
     api-token: '${{ secrets.SIGNPATH_API_TOKEN }}'
     organization-id: '<SignPath organization id>'
@@ -62,7 +62,7 @@ steps:
 
 {% raw %}
 | Parameter                                     | Default Value                                  | Description 
-|-----------------------------------------------|----------------------------                    |-------------------------------------------------------------
+|-----------------------------------------------|------------------------------------------------|-------------
 | `connector-url`                               | `https://githubactions.connectors.signpath.io` | The URL of the SignPath connector. Required if self-hosted.
 | `api-token`                                   | (mandatory)                                    | The _Api Token_ for a user with submitter permissions in the specified project/signing policy.
 | `organization-id`                             | (mandatory)                                    | The SignPath organization ID.
@@ -87,10 +87,9 @@ steps:
 ### Action output parameters
 
 The action supports the following output parameters:
-- `signing-request-id`: The id of the newly created signing request
-- `signing-request-web-url`: The url of the signing request in SignPath
-- `signpath-api-url`: The base API url of the SignPath API
-- `signed-artifact-download-url`: The url of the signed artifact in SignPath
+- `signing-request-id`: ID of the newly created signing request
+- `signing-request-web-url`: URL of the signing request in SignPath
+- `signed-artifact-download-url`: download URL of the signed artifact
 
 ## Define policies for source code and builds
 
