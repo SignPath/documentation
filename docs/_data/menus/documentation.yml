@@ -13,6 +13,9 @@
 - text: Signing Container Images
   path: signing-containers
   items:
+    - text: Notation (Notary)
+      path: notation
+
     - text: Sigstore Cosign
       path: cosign
 
@@ -88,6 +91,9 @@
 
     - text: macOS CryptoTokenKit
       path: macos
+
+    - text: Notation
+      path: notation
 
     - text: REST API
       path: rest-api

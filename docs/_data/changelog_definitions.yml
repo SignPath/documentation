@@ -41,6 +41,9 @@ components:
   - id: scim_connector
     label: 'SCIM Connector'
     categories: [connectors]
+  - id: notation_plugin
+    label: 'Notation Plugin'
+    categories: [crypto_providers]
 
 categories:
   - id: application
