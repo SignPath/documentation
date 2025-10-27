@@ -12,10 +12,18 @@ datasource: tables/signing-containers
 
 ## Overview
 
+<!-- TODO: not true -->
 SignPath supports these technologies for signing container images:
 
+* **[Notary (Notation)](/signing-containers/notation)**: Sign containers using Notary (recommended by Microsoft (AKS) and Amazon (EKS))
 * **[Sigstore Cosign](/signing-containers/cosign)**: Sign containers using Cosign by Sigstore (a Linux foundation project)
 * **[Docker Content Trust (DCT)](/signing-containers/docker-content-trust)**: Sign containers using DCT, directly supported by the Docker CLI and Mirantis 
+* **[GPG](/signing-containers/gpg)**: Signing containers using GPG keys for RedHat OpenShift
+
+## Comparing technologies
+
+{%- include render-table.html table=site.data.tables.signing-containers.methods-differences2 -%}
+{: .row-headers }
 
 ## Comparing Cosign and DCT
 

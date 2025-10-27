@@ -22,6 +22,9 @@
     - text: Docker Content Trust (DCT)
       path: docker-content-trust
 
+    - text: GPG
+      path: gpg
+
 - separator: true
 
 - text: Artifact Configuration
