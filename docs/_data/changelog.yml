@@ -1,3 +1,10 @@
+- date: '2025-10-28
+  updates:
+    teamcity_connector:
+      version: 0.7.0
+      improvements:
+        - text: Improved logging to aid problem analysis.
+          issues: [SIGN-8122]
 - date: '2025-10-23'
   updates:
     application:
