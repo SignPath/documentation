@@ -1,4 +1,4 @@
-- date: '2025-10-28
+- date: '2025-10-28'
   updates:
     teamcity_connector:
       version: 0.7.0
