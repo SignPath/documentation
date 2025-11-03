@@ -1,3 +1,23 @@
+- date: '2025-11-04'
+  updates:
+    application:
+      version: 1.199.0
+      improvements:
+        - text: |-
+            REST API: new route `POST /v1/{organizationId}/Projects/{projectSlug}/TrustedBuildSystemLinks` for linking trusted build systems in projects. See [API definition](https://app.signpath.io/Api/swagger) for details.
+          issues: [SIGN-8118, SIGN-7970]
+        - text: |-
+            Improved the quota display on the organization details page.
+          issues: [SIGN-7588]
+      bug_fixes:
+        - text: |-
+            Fixed: hash signing with ECDSA keys with invalid (e.g. too short) input hash lengths resulted in internal errors (now responds with status 400).
+          issues: [SIGN-8069]
+    self_hosted_installations:
+      version: 1.199.0
+      breaking_changes:
+        - text: Changed recommended Kubernetes version to 1.32 and `signpathio/kubectl` image tag to 1.32.
+          issues: [SIGN-8081]
 - date: '2025-10-28'
   updates:
     teamcity_connector:
@@ -26,7 +46,6 @@
           issues: [SIGN-8061]
     self_hosted_installations:
       version: 1.198.1
-      breaking_changes:
       improvements:
         - text: |-
             Dropped the fourth part (internal build number) from container image version numbers (e.g. image tag for this release is now simply `1.198.1`). In case you perform image mirroring you may need to update your mirroring scripts.
