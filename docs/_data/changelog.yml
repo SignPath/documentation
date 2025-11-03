@@ -11,7 +11,7 @@
           issues: [SIGN-7588]
       bug_fixes:
         - text: |-
-            Fixed: hash signing with ECDSA keys with invalid (e.g. too short) input hash lengths resulted in internal errors (now responds with status 400).
+            Fixed: hash signing requests for ECDSA keys with invalid input hash lengths resulted in internal errors (now responds with status 400).
           issues: [SIGN-8069]
     self_hosted_installations:
       version: 1.199.0
