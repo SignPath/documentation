@@ -7,7 +7,7 @@
             REST API: new route `POST /v1/{organizationId}/Projects/{projectSlug}/TrustedBuildSystemLinks` for linking trusted build systems in projects. See [API definition](https://app.signpath.io/Api/swagger) for details.
           issues: [SIGN-8118, SIGN-7970]
         - text: |-
-            Improved the quota display on the organization details page.
+            Minor improvements in the quota display on the organization details page.
           issues: [SIGN-7588]
       bug_fixes:
         - text: |-
