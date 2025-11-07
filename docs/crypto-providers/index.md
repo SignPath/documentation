@@ -127,7 +127,7 @@ The following values
 
 Supported log levels: `none`, `fatal`, `error`, `warning`, `info`, `debug`, `verbose`.
 
-#### Timeout settings
+#### Timeout settings (Windows KSP, Cryptoki, GPG, MacOS)
 
 | JSON setting                | Environment variable                  | Default Value     | Description
 |-----------------------------|---------------------------------------|-------------------|-------------------------
@@ -135,6 +135,15 @@ Supported log levels: `none`, `fatal`, `error`, `warning`, `info`, `debug`, `ver
 | `Timeouts.FirstRetryDelay`  | `SIGNPATH_TIMEOUTS_FIRST_RETRY_DELAY` | `1.16`            | Initial delay in seconds in case of failed API HTTP requests
 | `Timeouts.RetryCount`       | `SIGNPATH_TIMEOUTS_RETRY_COUNT`       | `10`              | Maximum number of retries in case of failed API HTTP requests
 {: .break-column-2}
+
+#### Timeout settings (Notation)
+
+| JSON setting                         | Environment variable                               | Default Value | Description
+|--------------------------------------|----------------------------------------------------|---------------|-------------------------
+| `ServiceUnavailableTimeoutInSeconds` | `SIGNPATH_SERVICE_UNAVAILABLE_TIMEOUT_IN_SECONDS ` | `600`         | Total time in seconds that the command will wait for a single service call to succeed (across several retries).
+| `HttpRequestTimeoutInSeconds`        | `SIGNPATH_HTTP_REQUEST_TIMEOUT_IN_SECONDS`         | `30`          | Timeout for HTTP calls in seconds per attempt
+{: .break-column-2}
+
 
 HTTP timeouts and 5xx server errors (e.g. 503 Service Unavailable errors) are treated as failed requests.
 

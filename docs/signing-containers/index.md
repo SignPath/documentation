@@ -8,35 +8,29 @@ redirect_from: /docker-signing
 datasource: tables/signing-containers
 ---
 
+<!-- TODO: this is not correct -->
 {% include editions.md feature="file_based_signing.docker" %}
 
 ## Overview
 
-<!-- TODO: not true -->
+There are multiple technologies available for signing container images and they all differ from classic code signing methods as used by most platforms. The different technologies follow their individual philosophies and have their specific advantages and shortcomings.
+
+## Different technologies
+
 SignPath supports these technologies for signing container images:
 
-* **[Notary (Notation)](/signing-containers/notation)**: Sign containers using Notary (recommended by Microsoft (AKS) and Amazon (EKS))
+* **[Notary (Notation)](/signing-containers/notary)**: Sign containers using Notary - recommended by Microsoft (AKS) and Amazon (EKS)
 * **[Sigstore Cosign](/signing-containers/cosign)**: Sign containers using Cosign by Sigstore (a Linux foundation project)
 * **[Docker Content Trust (DCT)](/signing-containers/docker-content-trust)**: Sign containers using DCT, directly supported by the Docker CLI and Mirantis 
 * **[GPG](/signing-containers/gpg)**: Signing containers using GPG keys for RedHat OpenShift
 
-## Comparing technologies
+### Recommendation
 
-{%- include render-table.html table=site.data.tables.signing-containers.methods-differences2 -%}
-{: .row-headers }
+SignPath recommends using [Notary (Notation)](/signing-containers/notary) for Enterprises and [Cosign](/signing-containers/cosign) for open source projects.
 
-## Comparing Cosign and DCT
+### Detailed comparison
 
-Both Cosign and DCT use concepts that differ widely from classic code signing methods as used by most platforms. Both follow their individual philosophies and have their specific advantages and shortcomings. We generally recommend the more modern Cosign, but according to your requirements you might prefer DCT. If DCT is a requirement by some customers, you might want to consider using both methods.
-
-### Similarities 
-
-* **No classic Certificate Authorities:** Manual key/certificate trust configuration ("pinning") required
-* **Signing items in OCI repositories rather than files:** Signatures are not transferable to other repositories, e.g. in replication scenarios
-
-### Differences 
-
-{%- include render-table.html table=site.data.tables.signing-containers.methods-differences -%}
+{%- include render-table.html table=site.data.tables.signing-containers.methods-comparison -%}
 {: .row-headers }
 
 ## Why use SignPath for container signing?
@@ -44,7 +38,7 @@ Both Cosign and DCT use concepts that differ widely from classic code signing me
 SignPath provides the following advantages:
 
 * You can use the full power of SignPath **signing policies**, including permission, approval, and origin verification
-* You can use all **CI integration** features of SignPath
+* You can use all **CI integration** features of SignPath <!-- TODO: rename to Pipeline Integrity? -->
 * Configuration and policy management is **aligned with other signing methods**, such as Authenticode or Java signing
 * SignPath maintains a **full audit log** of all signing activities including metadata such as the registry URL and signed image tag
 * You can **sign multiple images in a single signing request**, making audits/reviews of multi-image releases a lot easier

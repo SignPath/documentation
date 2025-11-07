@@ -1,8 +1,10 @@
+---
 header: Notation Plugin
 layout: resources
 toc: true
 show_toc: 3
 description: SignPath Notation Plugin
+---
 
 ## General instructions
 
@@ -14,9 +16,13 @@ The notation plugin can be installed using the following command:
 
 ~~~bash
 notation plugin install --url https://download.signpath.io/cryptoproviders/notation/1.0/linux/x64/notation-signpath.tar.gz --sha256sum <TODO>
-#or
+# or
 notation plugin install --file /path/to/downloaded/notation-signpath
 ~~~
+
+### Configuration
+
+See [SignPath Crypto Providers](/crypto-providers/#crypto-provider-configuration) for general configuration options.
 
 ### Usage
 
@@ -24,13 +30,17 @@ notation plugin install --file /path/to/downloaded/notation-signpath
 * The notation _key id_ is comprised of the _project slug_ and _signing policy slug_, separated by a forward slash, e.g. `"MyProject/release-signing"`
 
 ~~~bash
+export IMAGE_DIGEST=`docker inspect --format='{{index .RepoDigests 0}}' "$FQN:$TAG"`
+
 export SIGNPATH_API_KEY=...your-api-key...
 notation sign \
   --signature-format cose \
-  --id "MyProject/release-signing" \
+  --id "$SIGNPATH_PROJECT_SLUG/$SIGNPATH_SIGNING_POLICY_SLUG" \
   --plugin signpath \
-  --plugin-config "OrganizationId=0241f767-69c8-448d-ad5e-8bd453916068" \
-  $IMAGE_IDENTIFIER
+  --plugin-config "OrganizationId=$YOUR_ORGANIZATION_ID" \
+  $IMAGE_DIGEST
 ~~~
+
+{% include container_image_and_tag_panel.md %}
 
 [notation]: https://github.com/notaryproject/notation
