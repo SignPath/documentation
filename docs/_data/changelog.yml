@@ -1,3 +1,29 @@
+- date: '2025-11-18'
+  updates:
+    application:
+      version: 1.200.2
+      improvements:
+        - text: |-
+            Overhaul of the artifact data volume and "individual signatures" quotas:
+            * The quota calculation have been changed from "current month" to yearly (starting from the day and month of your subscription start).
+            * Your previous monthly quota limits have been multiplied by 12.
+            * You can see your current consumption, actual quota period and limits on your organization details page.
+            * Adapted the corresponding properties in the `GET /v1/{organizationId}/Organization` REST API:
+              * Renamed properties: `yearlyMaxNumberOfIndividualSignatures` and `yearlyMaxSizeOfArtifactsInBytes`
+              * New properties: `quotaPeriodStart` and `quotaPeriodEnd`
+          issues: [SIGN-3781]
+          saas_only: true
+        - text: |-
+            REST API: new route `GET /v1/{organizationId}/SigningRequests/{id}/Status` for (quick) signing request status infos.
+            * This becomes the preferred way for signing request status polling.
+            * See [API definition](https://app.signpath.io/Api/swagger) for details.
+          issues: [SIGN-8019]
+    self_hosted_installations:
+      version: 1.200.2
+      improvements:
+        - text: |-
+            Added automatic cleanup of temporary signing request metadata in `ApplicationShared` which reduces the overall database size.
+          issues: [SIGN-7728]
 - date: '2025-11-04'
   updates:
     application:
