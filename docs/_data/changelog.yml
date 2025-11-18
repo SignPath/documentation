@@ -4,18 +4,19 @@
       version: 1.200.2
       improvements:
         - text: |-
-            Overhaul of the artifact data volume and "individual signatures" quotas:
-            * The quota calculation have been changed from "current month" to yearly (starting from the day and month of your subscription start).
-            * Your previous monthly quota limits have been multiplied by 12.
-            * You can see your current consumption, actual quota period and limits on your organization details page.
-            * Adapted the corresponding properties in the `GET /v1/{organizationId}/Organization` REST API:
-              * Renamed properties: `yearlyMaxNumberOfIndividualSignatures` and `yearlyMaxSizeOfArtifactsInBytes`
-              * New properties: `quotaPeriodStart` and `quotaPeriodEnd`
+            Quotas are now calculated, displayed and limited annually:
+            * Background: Previously, quotas were observed per month, although subscriptions were annually. While this made it easier to detect excess usage early, it sometimes led to problems for customers with usage spikes in certain months.
+            * Starting with this release, each quota period starts from the day and month of the subscription start and lasts one year. (Note that _contract_ periods may be multiple years.)
+            * All annual quotas are set to the contracted value. For most customers, this is the previous monthly quota times 12. Customers who were granted excess monthly quotas to deal with spikes will be contacted indivudually.
+            * Find your consumption, quota period and quota limits on your organization details page.
+            * REST API: changes for `GET /v1/{organizationId}/Organization`
+              * New properties: `yearlyMaxSizeOfArtifactsInBytes`, `yearlyMaxNumberOfIndividualSignatures`, `quotaPeriodStart`, `quotaPeriodEnd`
+              * Removed properties: `monthlyMaxSizeOfArtifactsInBytes` and `maxNumberOfIndividualSignatures`
           issues: [SIGN-3781]
           saas_only: true
         - text: |-
-            REST API: new route `GET /v1/{organizationId}/SigningRequests/{id}/Status` for (quick) signing request status infos.
-            * This becomes the preferred way for signing request status polling.
+            REST API: new route `GET /v1/{organizationId}/SigningRequests/{id}/Status` for signing request status polling.
+            * Use instead of `GET /v1/{organizationId}/SigningRequests/{id}` for status polling. This route may become rate-limited in the future.
             * See [API definition](https://app.signpath.io/Api/swagger) for details.
           issues: [SIGN-8019]
     self_hosted_installations:
