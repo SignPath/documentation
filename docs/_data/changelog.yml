@@ -7,7 +7,7 @@
             Quotas are now calculated, displayed and limited annually:
             * Background: Previously, quotas were observed per month, although subscriptions were annually. While this made it easier to detect excess usage early, it sometimes led to problems for customers with usage spikes in certain months.
             * Starting with this release, each quota period starts from the day and month of the subscription start and lasts one year. (Note that _contract_ periods may be multiple years.)
-            * All annual quotas are set to the contracted value. For most customers, this is the previous monthly quota times 12. Customers who were granted excess monthly quotas to deal with spikes will be contacted indivudually.
+            * All annual quotas are set to the contracted value. This is the previous monthly quota times 12, except for customers who were granted excess monthly quotas to deal with spikes.
             * Find your consumption, quota period and quota limits on your organization details page.
             * REST API: changes for `GET /v1/{organizationId}/Organization`
               * New properties: `yearlyMaxSizeOfArtifactsInBytes`, `yearlyMaxNumberOfIndividualSignatures`, `quotaPeriodStart`, `quotaPeriodEnd`
