@@ -11,7 +11,6 @@ description: GitLab
 * Use the predefined Trusted Build System _GitLab.com_ (see [configuration](/documentation/trusted-build-systems#configuration))
   *  add it to the Organization
   *  link it to each SignPath Project for GitLab
-* Specify `<zip-file>` as root element of your [Artifact Configurations](/documentation/artifact-configuration) (GitLab packages all artifacts as ZIP archives)
 
 {:.panel.info}
 > **Self-managed installations**
