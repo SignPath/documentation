@@ -116,155 +116,144 @@ github-extended-policies-branch-ruleset-rules:
         * `min_alerts_threshold`: one of `none`, `errors` or `warnings`
         * `min_security_alerts_threshold`: one of `none`, `critical`, `high`, `medium` or `all`
 
+# Note: The spaces at the end are intentional for new lines in markdown
 gitlab-parameters:
   headers:
-    required: 
-    component: Component input
-    cli: Command line argument
-    env: Environment variable
+    required:
+    input: Input
     default: Default value
     description: Description
   body:
-    - component: |
-        `stage`
-      cli: |
-        &ndash;
-      env: |
-        &ndash;
+    - input: |
+        `stage`  
+        (Component input only)
       default: |
         `sign`
       description: The GitLab pipeline stage at which the component should be executed.
-    - component: |
-        `job_name`
-      cli: |
-        &ndash;
-      env: |
-        &ndash;
+    - input: |
+        `job_name`  
+        (Component input only)
       default: |
         `submit_signing_request (TODO)`
       description: The name of the given signing job.
-    - component: |
-        `connector_url`
-      cli: |
-        `--connector-url`
-      env: |
-        `SIGNPATH_CONNECTOR_URL`
+    - input: |
+        `connector_url` (Component)  
+        `SIGNPATH_CONNECTOR_URL` (Environment variable)  
+        `--connector-url` (CLI tool)
       default: |
         `https://gitlab.connectors.signpath.io`
       description: The URL of the SignPath connector. Required if self-managed.
     - required: |
         `*`
-      component: |
-        `api_token_env_name`
-      cli: |
-        `--api-token`
-      env: |
-        `SIGNPATH_API_TOKEN`
+      input: |
+        `api_token_var_name` (Component)  
+        `SIGNPATH_API_TOKEN` (Environment variable)  
+        `--api-token` (CLI tool)
       description: |
         The _Api Token_ for a user with submitter permissions in the specified project/signing policy. 
         The component only allows providing the token via an environment variable. The name of the environment variable can be overwritten using the `api_token_env_name` parameter.
     - required: |
         `*`
-      component: |
-        `gitlab_access_token_env_name`
-      cli: |
-        `--gitlab-access-token`
-      env: |
-        `SIGNPATH_GITLAB_ACCESS_TOKEN`
+      input: |
+        `gitlab_access_token_var_name` (Component)  
+        `SIGNPATH_GITLAB_ACCESS_TOKEN` (Environment variable)  
+        `--gitlab-access-token` (CLI tool)
       description: |
         The _GitLab Access Token_ that can be used to retrieve [origin metadata](/documentation/origin-verification) from the GitLab instance.
         The component only allows providing the token via an environment variable. The name of the environment variable can be overwritten using the `gitlab_access_token_env_name` parameter.
     - required: |
         `*`
-      component: |
-        `organization_id`
-      cli: |
-        `--organization-id`
-      env: |
-        `SIGNPATH_ORGANIZATION_ID`
+      input: |
+        `organization_id` (Component)  
+        `SIGNPATH_ORGANIZATION_ID` (Environment variable)  
+        `--organization-id` (CLI tool)
       description: The SignPath organization ID.
     - required: |
         `*`
-      component: |
-        `project_slug`
-      cli: |
-        `--project-slug`
-      env: |
-        `SIGNPATH_PROJECT_SLUG`
+      input: |
+        `project_slug` (Component)  
+        `SIGNPATH_PROJECT_SLUG` (Environment variable)  
+        `--project-slug` (CLI tool)
       description: The SignPath project slug.
     - required: |
         `*`
-      component: |
-        `signing_policy_slug`
-      cli: |
-        `--signing-policy-slug`
-      env: |
-        `SIGNPATH_SIGNING_POLICY_SLUG`
+      input: |
+        `signing_policy_slug` (Component)  
+        `SIGNPATH_SIGNING_POLICY_SLUG` (Environment variable)  
+        `--signing-policy-slug` (CLI tool)
       description: The SignPath signing policy slug.
-    - component: |
-        `artifact_configuration_slug`
-      cli: |
-        `--artifact-configuration-slug`
-      env: |
-        `SIGNPATH_ARTIFACT_CONFIGURATION_SLUG`
+    - input: |
+        `artifact_configuration_slug` (Component)  
+        `SIGNPATH_ARTIFACT_CONFIGURATION_SLUG` (Environment variable)  
+        `--artifact-configuration-slug` (CLI tool)
       description: The SignPath artifact configuration slug.
     - required: |
         `*`
-      component: |
-        `artifacts_job_name`
-      cli: |
-        `--artifacts-job-name`
-      env: |
-        `SIGNPATH_ARTIFACTS_JOB_NAME`
-      description: The name of the job that published the artifacts that will be signed.
-    - component: |
-        `wait_for_completion`
-      cli: |
-        `--wait-for-completion`
-      env: |
-        `SIGNPATH_WAIT_FOR_COMPLETION`
+      input: |
+        `gitlab_artifact_job_name` (Component)  
+        `SIGNPATH_GITLAB_ARTIFACT_JOB_NAME` (Environment variable)  
+        `--gitlab-artifact-job-name` (CLI tool)
+      description: The name of the job that published the artifact to be signed.
+    - required: |
+        `*`
+      input: |
+        `gitlab_artifact_path` (Component)  
+        `SIGNPATH_GITLAB_ARTIFACT_PATH` (Environment variable)  
+        `--gitlab-artifact-path` (CLI tool)
+      description: The path within the GitLab artifact.
+    - required: |
+        `*`
+      input: |
+        `output_artifact_path` (Component)
+        `SIGNPATH_OUTPUT_ARTIFACT_PATH` (Environment variable)  
+        `--output-artifact-path` (CLI tool)
+      description: Path to where the signed artifact will be stored.
+    - input: |
+        `wait_for_completion` (Component)  
+        `SIGNPATH_WAIT_FOR_COMPLETION` (Environment variable)  
+        `--wait-for-completion` (CLI tool)
       default: |
         `true`
-      description: Wait for the signing request to complete.
-    - component: |
-        &ndash;
-      cli: |
-        `--output-artifact-directory`
-      env: |
-        `SIGNPATH_OUTPUT_ARTIFACT_DIRECTORY`
-      description: Path where the signed artifact will be extracted. The component always publishes the signed artifact when `wait_for_completion` is set to `true`.
-    - component: |
-        `parameters`
-      cli: |
-        `--parameters`
-      env: |
-        `SIGNPATH_PARAMETERS`
+      description: Wait for the signing request to complete. If set to true, the signed artifact will be published.
+    - input: |
+        (CLI tool only)  
+        `SIGNPATH_OUTPUT_ARTIFACT_DIRECTORY` (Environment variable) or  
+        `--output-artifact-path`
+      description: Path to where the signed artifact will be stored. The component always publishes the signed artifact when `wait_for_completion` is set to `true`.
+    - input: |
+        `parameters` (Component)  
+        `SIGNPATH_PARAMETERS` (Environment variable)  
+        `--parameters` (CLI tool)
       description: |
-        Parameters that map to [user-defined parameters] in the Artifact Configuration. TODO: format!!!
-    - component: |
-        `wait_for_completion_timeout_in_seconds`
-      cli: |
-        `--wait-for-completion-timeout-in-seconds`
-      env: |
-        `SIGNPATH_WAIT_FOR_COMPLETION_TIMEOUT_IN_SECONDS`
+        Json-formatted parameters that map to [user-defined parameters] in the Artifact Configuration.
+    - input: |
+        (CLI tool only) 
+        `SIGNPATH_DOTENV_OUTPUT_PATH` (Environment variable)  
+        `--dotenv-output-path` (CLI tool)
+      description: Path to a .env file where output variables will be stored.
+    - input: |
+        (CLI tool only)  
+        `SIGNPATH_DOTENV_OUTPUT_PREFIX` (Environment variable)  
+        `--dotenv-output-prefix` (CLI tool)
+      description: The prefix used for the variables in the dotenv output file.
+    - input: |
+        `wait_for_completion_timeout_in_seconds` (Component)  
+        `SIGNPATH_WAIT_FOR_COMPLETION_TIMEOUT_IN_SECONDS` (Environment variable)  
+        `--wait-for-completion-timeout-in-seconds` (CLI tool)
       default: |
         `600`
       description: Maximum time in seconds that the job/tool will wait for the signing request to complete.
-    - component: |
-        `service_unavailable_timeout_in_seconds`
-      cli: |
-        `--service-unavailable-timeout-in-seconds`
-      env: |
-        `SIGNPATH_SERVICE_UNAVAILABLE_TIMEOUT_IN_SECONDS`
+    - input: |
+        `service_unavailable_timeout_in_seconds` (Component)  
+        `SIGNPATH_SERVICE_UNAVAILABLE_TIMEOUT_IN_SECONDS` (Environment variable)  
+        `--service-unavailable-timeout-in-seconds` (CLI tool)
       default: |
         `600`
       description: Total time in seconds that the job/tool will wait for a single service call to succeed (across several retries).
-    - component: |
-        `download_signed_artifact_timeout_in_seconds`
-      cli: |
-        `--download-signed-artifact-timeout-in-seconds`
-      env: |
-        `SIGNPATH_DOWNLOAD_SIGNED_ARTIFACT_TIMEOUT_IN_SECONDS`
+    - input: |
+        `download_signed_artifact_timeout_in_seconds` (Component)  
+        `SIGNPATH_DOWNLOAD_SIGNED_ARTIFACT_TIMEOUT_IN_SECONDS` (Environment variable)  
+        `--download-signed-artifact-timeout-in-seconds` (CLI tool)
       default: |
         `300`
       description: HTTP timeout when downloading the signed artifact.

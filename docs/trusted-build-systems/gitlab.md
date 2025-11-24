@@ -42,15 +42,18 @@ We provide a `submit-signing-request` component that can be integrated into a Gi
 include:
   - component: gitlab.com/signpath/components/submit-signing-request@0.1
     inputs:
-      stage: build
+      stage: sign
       job_name: sign_my_component_a
-      api_token_env_name: SIGNPATH_MY_COMPONENT_A_API_TOKEN
-      gitlab_access_token_env_name: SIGNPATH_GITLAB_ACCESS_TOKEN
+      api_token_var_name: SIGNPATH_MY_COMPONENT_A_API_TOKEN
+      gitlab_access_token_var_name: SIGNPATH_GITLAB_ACCESS_TOKEN
       organization_id: f437cdbb-2ec0-4958-9a85-c2c0cd5dfa1a
       project_slug: MyComponentA
       signing_policy_slug: release-signing
-      artifacts_job_name: build_job # TODO: needs to be entered in dependencies
-      wait_for_completion: true # TODO: automatically publishes the artifact?
+      gitlab_artifact_job_name: build_job
+      gitlab_artifact_path: output/my-executable
+      wait_for_completion: true
+      parameters:
+        - myparam: myvalue
 
 build_job:
   stage: build
@@ -65,7 +68,7 @@ All values can also be provided via environment variables. See the [parameter li
 
 ### `signpath-gitlab` CLI tool
 
-For all organizations that don'T support _Docker Executors_, the `signpath-gitlab` CLI tool can be directly invoked:
+For all organizations that don't support _Docker Executors_, the `signpath-gitlab` CLI tool can be directly invoked:
 
 {% raw %}
 ```yaml
@@ -83,19 +86,19 @@ build_job:
 sign_job:
   stage: sign
   script:
-    # TODO: signature validation???
-    # TODO: add a log verbose mode?
     - curl -o signpath-gitlab -L https://download.signpath.io/ci-integrations/gitlab/0.1/linux/x64/signpath-gitlab
     - |
       ./signpath-gitlab submit-signing-request \
         --api-token $SIGNPATH_API_TOKEN \
-        --gitlab-access-token $SIGNPATH_GITLAB_ACCESS_TOEKN \
+        --gitlab-access-token $SIGNPATH_GITLAB_ACCESS_TOKEN \
         --organization-id $SIGNPATH_ORGANIZATION_ID \
         --project-slug MyProject \
         --signing-policy-slug release-signing \
-        --artifacts-job-name build_job \
+        --gitlab-artifact-job-name build_job \
+        --gitlab_artifact_path: output/app.exe \
         --wait-for-completion true \
-        --output-artifact-directory signed-output \
+        --output-artifact-path signed-output \
+        --parameters '{ "myparam": "myvalue" }'
   artifacts:
     - signed-output
 ```
@@ -105,7 +108,10 @@ All values can also be provided via environment variables.  See the [parameter l
 
 ### Supported parameters
 
-TODO: table is too wide
+The parameters can be passed to the
+
+* component via _inputs_ or _environment variables_
+* CLI tool via _arguments_ or _environment variables_
 
 {%- include render-table.html table=site.data.tables.trusted-build-systems.gitlab-parameters -%}
 
@@ -113,12 +119,13 @@ TODO: table is too wide
 
 ### Environment variables for subsequent jobs
 
-*TODO: should we support that?*
+The component invocation will publish a dotenv report and make the following environment variables available in subsequent jobs:
 
-The action supports the following output parameters:
-- `signing-request-id`: The id of the newly created signing request
-- `signing-request-web-url`: The url of the signing request in SignPath
-- `signpath-api-url`: The base API url of the SignPath API
-- `signed-artifact-download-url`: The url of the signed artifact in SignPath
+* `${PREFIX}_SIGNPATH_SIGNING_REQUEST_ID`: The id of the newly created signing request.
+* `${PREFIX}_SIGNPATH_SIGNING_REQUEST_WEB_URL`: The url of the signing request in SignPath.
+* `${PREFIX}_SIGNPATH_SIGNED_ARTIFACT_DOWNLOAD_URL`: The url where the signed artifact can be downloaded.
+
+`${PREFIX}` defaults to the capitalized name of the signing job in GitLab (`SIGN` by default).
 
 TODO: the term _Pipeline Integrity_ is already used by GitLab: https://docs.gitlab.com/ci/pipeline_security/#pipeline-integrity
+TODO: Update SLSA page also
