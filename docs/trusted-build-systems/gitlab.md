@@ -32,7 +32,7 @@ We provide a `submit-signing-request` component that can be integrated into a Gi
 {% raw %}
 ```yaml
 include:
-  - component: gitlab.com/signpath-test-root/components/submit-signing-request@0.1
+  - component: gitlab.com/signpath-test-root/components/submit-signing-request@0.1.0
     inputs:
       stage: sign
       job_name: sign_my_component_a
@@ -79,5 +79,3 @@ The component invocation will publish a dotenv report and make the following env
 
 `${PREFIX}` defaults to the capitalized name of the signing job in GitLab (`SIGN` by default).
 
-TODO: the term _Pipeline Integrity_ is already used by GitLab: https://docs.gitlab.com/ci/pipeline_security/#pipeline-integrity
-TODO: Update SLSA page also
