@@ -1,3 +1,15 @@
+- date: '2025-11-27'
+  updates:
+    gitlab_connector:
+      version: 0.1.0
+      new_features:
+        - text: Initial release
+          issues: []
+    gitlab_component:
+      version: 0.1.0
+      new_features:
+        - text: Initial release
+          issues: []
 - date: '2025-11-18'
   updates:
     application:
