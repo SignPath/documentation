@@ -1,3 +1,19 @@
+- date: '2025-11-27'
+  updates:
+    crypto_providers:
+      version: 5.4.0
+      improvements:
+        - text: |
+            Improved Linux Cryptoki samples:
+            * Added sample code for the [`debsigs`](https://manpages.debian.org/stable/debsigs/debsigs.1p.en.html) Debian package format
+            * Simplified the OpenSSL configuration sample for using the PKCS#11 engine with the SignPath CryptoProvider
+          issues: [SIGN-8064, SIGN-8062]
+        - text: |
+            Added Debian 13 ("trixie") to the supported [Linux distros](/crypto-providers#supported-linux-distributions)
+          issues: [SIGN-7994]
+        - text: |
+            Cryptoki on Linux: updated OpenSSL dependency to 3.4.2
+          issues: [SIGN-7906]
 - date: '2025-11-18'
   updates:
     application:
