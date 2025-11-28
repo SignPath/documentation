@@ -76,7 +76,7 @@ For all organizations that don't support _Docker Executors_, we provide a CLI to
 | `artifact_configuration_slug`                 |                                         | The SignPath artifact configuration slug.
 | `gitlab_artifact_job_name`                    | (mandatory)                             | The name of the job that published the artifact to be signed.
 | `gitlab_artifact_path`                        | (mandatory)                             | The path within the GitLab artifact.
-| `output_artifact_path`                        |                                         | Path to where the signed artifact will be stored.
+| `output_artifact_path`                        |                                         | Path to where the signed artifact will be stored. If not specified, the task will not download the signed artifact from SignPath.
 | `wait_for_completion`                         | `true`                                  | Wait for the signing request to complete. If set to true, the signed artifact will be published.
 | `parameters`                                  |                                         | List of key/value pairs that map to [user-defined parameters](/artifact-configuration/syntax#parameters) in the Artifact Configuration.
 | `wait_for_completion_timeout_in_seconds`      | `600`                                   | Maximum time in seconds that the job/tool will wait for the signing request to complete.
