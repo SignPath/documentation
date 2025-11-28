@@ -55,7 +55,7 @@ build_job:
     - output/my-signed-executable
 ```
 
-All values can also be provided via environment variables. See the [parameter list](#supported-parameters) for a complete list of all supported inputs. 
+See the [parameter list](#supported-parameters) for a complete list of all supported inputs. 
 
 {:.panel.info}
 > **Signing multiple files**
