@@ -29,7 +29,6 @@ The GitLab connector performs the following checks:
 
 We provide a `submit-signing-request` component that can be integrated into a GitLab Pipeline:
 
-{% raw %}
 ```yaml
 include:
   - component: gitlab.com/signpath-test-root/components/submit-signing-request@0.1.0
@@ -55,7 +54,6 @@ build_job:
   artifacts:
     - output/my-executable
 ```
-{% endraw %}
 
 All values can also be provided via environment variables. See the [parameter list](#supported-parameters) for a complete list of all supported inputs. 
 
