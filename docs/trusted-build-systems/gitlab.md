@@ -42,8 +42,7 @@ include:
       signing_policy_slug: release-signing
       gitlab_artifact_job_name: build_job
       gitlab_artifact_path: output/my-executable
-      wait_for_completion: true
-      output_artifact_path: 
+      output_artifact_path: output/my-signed-executable
       parameters:
         - myparam: myvalue
 
@@ -52,10 +51,16 @@ build_job:
   script:
     - echo "Building some software..."
   artifacts:
-    - output/my-executable
+    paths:
+    - output/my-signed-executable
 ```
 
 All values can also be provided via environment variables. See the [parameter list](#supported-parameters) for a complete list of all supported inputs. 
+
+{:.panel.info}
+> **Signing multiple files**
+>
+> If you want to sign multiple files in a single signing request, you have to create and publish a dedicated ZIP archive in your build step and modify your artifact configuration on SignPath accordingly.
 
 ### Setups that don't include _Docker Executors_
 
