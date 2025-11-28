@@ -65,7 +65,25 @@ For all organizations that don't support _Docker Executors_, we provide a CLI to
 
 ## Supported parameters
 
-{%- include render-table.html table=site.data.tables.trusted-build-systems.gitlab-parameters -%}
+| Input                                         | Default Value                           | Description 
+|-----------------------------------------------|-----------------------------------------|---------------------------
+| `stage`                                       | `sign`                                  | The GitLab pipeline stage at which the component should be executed.
+| `job_name`                                    | `submit-signing-request`                | The name of the given signing job.
+| `connector_url`                               | `https://gitlab.connectors.signpath.io` | The URL of the SignPath connector. Required if self-managed.
+| `api_token_var_name`                          | `SIGNPATH_API_TOKEN`                    | The _Api Token_ for a user with submitter permissions in the specified project/signing policy. The component only allows providing the token via an environment variable. The name of the environment variable can be overwritten using this input.
+| `gitlab_access_token_var_name`                | `SIGNPATH_GITLAB_ACCESS_TOKEN`          | The _GitLab Access Token_ that can be used to retrieve [origin metadata](/documentation/origin-verification) from the GitLab instance. Requires the `read_api` scope. The component only allows providing the token via an environment variable. The name of the environment variable can be overwritten using this input.
+| `organization_id`                             | (mandatory)                             | The SignPath organization ID.
+| `project_slug`                                | (mandatory)                             | The SignPath project slug.
+| `signing_policy_slug`                         | (mandatory)                             | The SignPath signing policy slug.
+| `artifact_configuration_slug`                 |                                         | The SignPath artifact configuration slug.
+| `gitlab_artifact_job_name`                    | (mandatory)                             | The name of the job that published the artifact to be signed.
+| `gitlab_artifact_path`                        | (mandatory)                             | The path within the GitLab artifact.
+| `output_artifact_path`                        |                                         | Path to where the signed artifact will be stored.
+| `wait_for_completion`                         | `true`                                  | Wait for the signing request to complete. If set to true, the signed artifact will be published.
+| `parameters`                                  |                                         | List of key/value pairs that map to [user-defined parameters](/artifact-configuration/syntax#parameters) in the Artifact Configuration.
+| `wait_for_completion_timeout_in_seconds`      | `600`                                   | Maximum time in seconds that the job/tool will wait for the signing request to complete.
+| `service_unavailable_timeout_in_seconds`      | `600`                                   | Total time in seconds that the job/tool will wait for a single service call to succeed (across several retries).
+| `download_signed_artifact_timeout_in_seconds` | `300`                                   | HTTP timeout when downloading the signed artifact.
 
 [user-defined parameters]: /documentation/artifact-configuration/syntax#parameters
 
