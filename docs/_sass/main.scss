@@ -67,6 +67,9 @@ header > div, main > section > div
 
 h1, h2, h3, h4, h5 {
 	font-weight: 400;
+	code {
+		font-style: normal;
+	}
 }
 
 p.center {
