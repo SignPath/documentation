@@ -1,3 +1,21 @@
+- date: '2025-12-02'
+  updates:
+    application:
+      version: 1.201.4
+      new_features:
+        - text: |-
+            Added support for the "DSSE (Dead Simple Signing Envelope)" signing format via [`<dsse-sign>`](/artifact-configuration/reference#dsse-sign).
+          issues: [SIGN-8132]
+      bug_fixes:
+        - text: |-
+            Fixed in UI: Error handling for "resubmit" action when the new signing policy doesn't allow the original signing requests' branch name.
+          issues: [SIGN-7955]
+    self_hosted_installations:
+      version: 1.201.4
+      improvements:
+        - text: |-
+            Improved SignService reliability on temporary database outages.
+          issues: [SIGN-8164]
 - date: '2025-11-27'
   updates:
     crypto_providers:

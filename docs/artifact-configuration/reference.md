@@ -219,6 +219,45 @@ See also:
 
 * Use [metadata restrictions](#metadata-restrictions) for `<xml-file>` to restrict root element and namespace.
 
+
+### `<dsse-sign>`: DSSE (Dead Simple Signing Envelope) {#dsse-sign}
+
+{% include editions.md feature="file_based_signing.dsse" %}
+
+{%- include_relative render-ac-directive-table.inc directive="dsse-sign" -%}
+
+Create [Dead Simple Signing Envelope (DSSE)](https://github.com/secure-systems-lab/dsse) signatures to wrap any input file in a JSON envelope and sign it. The DSSE format is a generic signing format which for example can be used for signing SLSA Verification Summary Attestations like in the example below.
+
+{:.panel.note}
+> **This directive creates a new file ("envelope") which _contains_ (wraps) the input file**
+>
+> This directive adds a file to the output and is therefore only available within a [`<zip-file>`](syntax#zip-file-element) element. 
+
+The `dsse-sign` directive supports the following parameters:
+
+| Parameter          | Default value             | Available values             | Description
+|--------------------|---------------------------|------------------------------|-------------------------------------------------
+| `output-file-name` | (mandatory)               |                              | Name of the output file containing the signature. Use `${file.name}` to reference the source file name.
+| `payload-type`     | (mandatory)               |                              | A [MIME type or URI](https://github.com/secure-systems-lab/dsse/blob/master/protocol.md) which describes the payload type.
+| `hash-algorithm`   | `sha256`                  | `sha256`, `sha384`, `sha512` | Hash algorithm used to create the signature.
+| `rsa-padding`      | (mandatory for RSA keys)  | `pkcs1`, `pss`               | Padding algorithm (ignored for non-RSA keys).
+
+#### DSSE example
+
+~~~ xml
+<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+  <zip-file>
+    <file path="slsa-vsa.json">
+      <dsse-sign payload-type="application/vnd.in-toto+json" hash-algorithm="sha256" rsa-padding="pkcs1"
+                 output-file-name="slsa-vsa.dsse.json" />
+    </file>
+  </zip-file>
+</artifact-configuration>
+~~~
+
+The resulting artifact will contain both the original file `slsa-vsa.json` and `slsa-vsa.dsse.json`.
+
+
 ### `<create-cms-signature>`: Cryptographic Message Syntax (CMS) {#create-cms-signature}
 
 {% include editions.md feature="file_based_signing.cms" %}
