@@ -51,7 +51,7 @@ You can easily sign multiple files by creating a ZIP archive. Use wildcards, ind
 
 ## Deep signing of nested files
 
-Sometimes you need to sign both the container and its contents. For instance, an MSI installer package needs to be signed, but you also want the files it installs to be signed. SignPath can sign both the container and its contents in a single pass if you specify an appropriate artifact configuration. See [here](examples#msi-sample) for an example.
+Sometimes you need to sign both a composite file and its contents. For instance, an MSI installer package needs to be signed, but you also want the files it installs to be signed. SignPath can sign both the composite file and its contents in a single pass if you specify an appropriate artifact configuration. See [here](examples#msi-sample) for an example.
 
 ## Further reading
 
