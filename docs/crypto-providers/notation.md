@@ -29,6 +29,7 @@ See [SignPath Crypto Providers](/crypto-providers/#crypto-provider-configuration
 * The available [configuration values](/documentation/crypto-providers#crypto-provider-configuration) can also be passed in via the command line arguments `--plugin-config "Key=<Value>"`. 
 * The notation _key id_ is comprised of the _project slug_ and _signing policy slug_, separated by a forward slash, e.g. `"MyProject/release-signing"`
 
+{% raw %}
 ~~~bash
 export IMAGE_DIGEST=`docker inspect --format='{{index .RepoDigests 0}}' "$FQN:$TAG"`
 
@@ -40,6 +41,7 @@ notation sign \
   --plugin-config "OrganizationId=$YOUR_ORGANIZATION_ID" \
   $IMAGE_DIGEST
 ~~~
+{% endraw %}
 
 {% include container_image_and_tag_panel.md %}
 
