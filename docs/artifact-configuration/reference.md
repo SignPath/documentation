@@ -246,7 +246,7 @@ The general syntax for embedded signing methods is: `<`_format_`-sign output-fil
 Create a DSSE signature file that contains the signature and the evenloped original file in JSON format.
 
 {:.panel.info}
-> ** DSSE (Dead Simple Signing Envelope)
+> **DSSE (Dead Simple Signing Envelope)**
 >
 > [DSSE] is a signing specification created by the [Secure Systems Lab] at NYU School of Engineering. It has not been formally standardized but is widely used in the context of code signing. 
 > Note that DSSE contains no metadata about the singing format, so all signing parameters must be agreed out-of-band.
