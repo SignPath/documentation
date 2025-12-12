@@ -23,6 +23,7 @@
     nuget: true
     android: true
     java: false
+    rpm: false
     office_macros: false
     xml: false
     docker: false
@@ -92,6 +93,7 @@
     nuget: true
     android: true
     java: true
+    rpm: false
     office_macros: false
     xml: false
     docker: false
@@ -156,6 +158,7 @@
     nuget: true
     android: true
     java: true
+    rpm: true
     office_macros: true
     xml: true
     docker: true
@@ -277,6 +280,7 @@
     nuget: true
     android: true
     java: true
+    rpm: true
     office_macros: false
     xml: false
     docker: true

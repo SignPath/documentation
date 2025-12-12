@@ -1,3 +1,24 @@
+- date: '2025-12-16'
+  updates:
+    application:
+      version: 1.202.0
+      new_features:
+        - text: |-
+            Added support for file-based RPM Package Manager (`.rpm`) signing via [`<rpm-sign>`](/artifact-configuration/reference#rpm-sign).
+          issues: [SIGN-8134, SIGN-8162]
+      improvements:
+        - text: |
+            ???
+          issues: [SIGN-8171]
+        - text: |
+            Improved the history view on the organization details page (added a few missing fields).
+          issues: [SIGN-8172]
+    self_hosted_installations:
+      version: 1.202.0
+      upgrade_information:
+        - text: |-
+            All Windows containers switched from Windows Server 2019 to 2022 base images. Before starting the upgrade, ensure that your Kubernetes cluster has ready Windows Server 2022 worker nodes available.
+          issues: [SIGN-8113]
 - date: '2025-12-02'
   updates:
     application:

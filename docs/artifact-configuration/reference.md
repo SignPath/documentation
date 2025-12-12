@@ -46,6 +46,7 @@ Since the file's format does not change, the unsigned files are not needed anymo
 * [`<office-macro-sign>`: Microsoft Office VBA macros](#office-macro-sign)
 * [`<opc-sign>`: Open Packaging Convention](#opc-sign)
 * [`<jar-sign>`: Java Archives](#jar-sign)
+* [`<rpm-sign>`: RPM Package Manager](#rpm-sign)
 * [`<xml-sign>`: XML Digital Signature](#xml-sign)
 
 The general syntax for embedded signing methods is: `<`_format_`-sign />`
@@ -191,6 +192,39 @@ jarsigner -verify -strict <file>.zip
 ~~~
 
 Add the `-verbose` option to see the certificate.
+
+
+#### `<rpm-sign>`: RPM Package Manager {#rpm-sign}
+
+{% include editions.md feature="file_based_signing.rpm" %}
+
+{%- include_relative render-ac-directive-table.inc directive="rpm-sign" -%}
+
+RPM is a versatile package management format used in many Linux distributions like Fedora, RedHat, or openSUSE. RPM files embed GPG signatures and therefore is only available for [signing policies](/projects#signing-policies) with a [GPG key](/managing-certificates#certificate-types) certificate.
+
+##### Example
+
+~~~ xml
+<?xml version="1.0" encoding="utf-8" ?>
+<artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
+  <rpm-file>
+    <rpm-sign />
+  </rpm-file>
+</artifact-configuration>
+~~~
+
+##### Verification {#rpm-sign-verification}
+
+RPM package verification usually happens "under the hood" via package managers like [`dnf`](https://dnf.readthedocs.io/).
+
+To manually verify `.rpm` files, use the following commands.
+
+~~~ bash
+rpm --import my_key.asc # Import, i.e. trust, the GPG public key
+
+rpm --verbose --checksig my_package.rpm
+~~~
+
 
 #### `<xml-sign>`: XML Digital Signature {#xml-sign}
 
