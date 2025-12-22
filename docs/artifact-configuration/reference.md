@@ -338,14 +338,14 @@ The resulting artifact will contain both the original file `myfile.bin` and the 
 Multiple tools support verification of CMS signature. One popular option is `openssl cms`:
 
 ~~~ bash
-openssl cms -verify -purpose codesign -content myfile.bin -inform PEM -in myfile.cms.pem -out /dev/null
+openssl cms -verify -purpose codesign -content myfile.bin -binary -inform PEM -in myfile.bin.cms.pem -out /dev/null
 ~~~
 
 {:.panel.warning}
 > **OpenSSL CMS verification**
 >
 > * Prior to OpenSSL 3.2, the `-purpose` flag does not support `codesign`. Use `any` instead.
-> * When the certificate is not trusted on the target system, specify `-CAFile` with the path of the root certificate. Make sure that the root certificate is distributed in a secure way.
+> * When the certificate is not trusted on the target system, specify `-CAfile` with the path of the root certificate. Make sure that the root certificate is distributed in a secure way.
 
 #### `<create-gpg-signature>`: Detached GPG signing {#create-gpg-signature}
 
