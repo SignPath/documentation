@@ -235,7 +235,7 @@ While the original file is still available, it often needs to be extracted from 
 
 * [`<dsse-sign>`: DSSE (Dead Simple Signing Envelope)](#dsse-sign)
 
-The general syntax for embedded signing methods is: `<`_format_`-sign output-file-name="..." />`
+The general syntax for enveloped signing methods is: `<`_format_`-sign output-file-name="..." />`
 
 #### `<dsse-sign>`: DSSE (Dead Simple Signing Envelope) {#dsse-sign}
 
