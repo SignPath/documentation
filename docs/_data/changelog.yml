@@ -2,6 +2,12 @@
   updates:
     application:
       version: 1.202.0
+      breaking_changes:
+        - text: |
+            Improved naming of "verify origin policy" on signing policy objects, including changing the property `verifyOrigin` to `verifyOriginPolicy` and `originVerification` to `originPolicyVerification` in the following APIs:
+            * `POST /v1/{organizationId}/Projects/{projectSlug}/SigningPolicies`
+            * `POST /v1/{organizationId}/Projects/{projectSlug}/SigningPolicies/{signingPolicySlug}`
+          issues: [SIGN-8033]
       new_features:
         - text: |-
             Added support for file-based RPM Package Manager (`.rpm`) signing via [`<rpm-sign>`](/artifact-configuration/reference#rpm-sign).
