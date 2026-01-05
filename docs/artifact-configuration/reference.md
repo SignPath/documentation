@@ -542,6 +542,6 @@ The restrictions can be applied to file elements, [file set elements](syntax#fil
 
 [^jscript]: Note that [JScript](https://en.wikipedia.org/wiki/JScript) is not the same as JavaScript. While it is possible to use this option to sign JavaScript files, JavaScript engines will not be able to use this signature.
 
-[DSSE]: (https://github.com/secure-systems-lab/dsse)
+[DSSE]: https://github.com/secure-systems-lab/dsse
 [RFC 5652]: https://datatracker.ietf.org/doc/html/rfc5652
 [Secure Systems Lab]: https://ssl.engineering.nyu.edu/
