@@ -10,7 +10,7 @@
       version: 1.203.0
       breaking_changes:
         - text: |
-            SignService charts: Moved App Insights connection string from `appSecrets.signService.applicationInsights.connectionString` to `appSecrets.shared.applicationInsights.connectionString`.
+            SignService charts: Moved Application Insights connection string from `appSecrets.signService.applicationInsights.connectionString` to `appSecrets.shared.applicationInsights.connectionString`.
           issues: [SIGN-7578]
 - date: '2025-12-16'
   updates:
