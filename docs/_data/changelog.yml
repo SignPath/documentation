@@ -1,13 +1,31 @@
+- date: '2026-01-13'
+  updates:
+    application:
+      version: 1.203.0
+      improvements:
+        - text: |-
+            Deep signing with long file paths (> 260 characters) is now supported.
+          issues: [SIGN-8248]
+    self_hosted_installations:
+      version: 1.203.0
+      breaking_changes:
+        - text: |
+            SignService charts: Moved App Insights connection string from `appSecrets.signService.applicationInsights.connectionString` to `appSecrets.shared.applicationInsights.connectionString`.
+          issues: [SIGN-7578]
 - date: '2025-12-16'
   updates:
     application:
       version: 1.202.0
       breaking_changes:
         - text: |
-            Improved naming of "verify origin policy" on signing policy objects, including changing the property `verifyOrigin` to `verifyOriginPolicy` and `originVerification` to `originPolicyVerification` in the following APIs:
-            * `POST /v1/{organizationId}/Projects/{projectSlug}/SigningPolicies`
-            * `POST /v1/{organizationId}/Projects/{projectSlug}/SigningPolicies/{signingPolicySlug}`
-          issues: [SIGN-8033]
+            Improved naming of "verify origin policy" on signing policy objects.
+            * Changed in REST API the property `verifyOrigin` to `verifyOriginPolicy` and `originVerification` to `originPolicyVerification` in the following routes:
+              * `POST /v1/{organizationId}/Projects/{projectSlug}/SigningPolicies`
+              * `POST /v1/{organizationId}/Projects/{projectSlug}/SigningPolicies/{signingPolicySlug}`
+            * Changed in REST API the property `verifiesOrigin` to `verifiesOriginPolicy` in the following routes:
+              * `GET /v1/{organizationId}/Projects/{slug}`
+              * `GET /v1/{organizationId}/Projects/{projectSlug}/SigningPolicies/{signingPolicySlug}`
+          issues: [SIGN-8033, SIGN-8259]
       new_features:
         - text: |-
             Added support for file-based RPM Package Manager (`.rpm`) signing via [`<rpm-sign>`](/artifact-configuration/reference#rpm-sign).
