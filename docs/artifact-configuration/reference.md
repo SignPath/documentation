@@ -200,12 +200,11 @@ Add the `-verbose` option to see the certificate.
 
 {%- include_relative render-ac-directive-table.inc directive="rpm-sign" -%}
 
-RPM is a versatile package management format used in many Linux distributions like Fedora, RedHat, or openSUSE. RPM files embed GPG signatures and therefore is only available for [signing policies](/projects#signing-policies) with a [GPG key](/managing-certificates#certificate-types) certificate.
+RPM is the package manager format for many Linux distributions including Fedora, RedHat, and openSUSE. RPM is based on GPG signatures and requires [signing policies](/projects#signing-policies) with a [GPG key](/managing-certificates#certificate-types) certificate.
 
 ##### Example
 
 ~~~ xml
-<?xml version="1.0" encoding="utf-8" ?>
 <artifact-configuration xmlns="http://signpath.io/artifact-configuration/v1">
   <rpm-file>
     <rpm-sign />
@@ -215,9 +214,9 @@ RPM is a versatile package management format used in many Linux distributions li
 
 ##### Verification {#rpm-sign-verification}
 
-RPM package verification usually happens "under the hood" via package managers like [`dnf`](https://dnf.readthedocs.io/).
+Package verification is typically performed automatically by package management tools like yum and DNF.
 
-To manually verify `.rpm` files, use the following commands.
+To manually verify `.rpm` files, use the following commands:
 
 ~~~ bash
 rpm --import my_key.asc # Import, i.e. trust, the GPG public key
