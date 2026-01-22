@@ -1,3 +1,20 @@
+- date: '2026-01-27'
+  updates:
+    application:
+      version: 1.204.0
+      improvements:
+        - text: The concrete cause of the error is now included in body of HTTP 403 (Forbidden) responses when using the REST API.
+          issues: [SIGN-6227]
+    self_hosted_installations:
+      version: 1.204.0
+      breaking_changes:
+        - text: Changed recommended Kubernetes version to 1.33.x and `signpathio/kubectl` image tag to 1.33.7.
+          issues: [SIGN-8203]
+    powershell_module:
+      version: 4.5.0
+      improvements:
+        - text: Improved error messages.
+          issues: [SIGN-6227]
 - date: '2026-01-13'
   updates:
     application:
