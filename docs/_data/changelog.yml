@@ -3,7 +3,8 @@
     application:
       version: 1.204.0
       improvements:
-        - text: REST API: specific cause of HTTP 403 (Forbidden) errors is now included in the body.
+        - text: |
+            REST API: specific cause of HTTP 403 (Forbidden) errors is now included in the body.
           issues: [SIGN-6227]
     self_hosted_installations:
       version: 1.204.0
